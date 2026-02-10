@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/edicion-video.css">
+
+    <title>Edicion de video</title>
+</head>
+
+<body>
+    <header>
+        <h1>Nombre de la Aplicación</h1>
+    </header>
+
+    <div class="secciones">
+        <a href="realidad-aumentada.html">
+
+            <button>
+                <img src="/iconos/box.svg" alt="icono-ra" width="20" height="20">Realidad Aumentada</button>
+        </a>
+
+        <a href="edicion-video.html">
+
+            <button>
+                <img src="/iconos/camera-reels.svg" alt="icono-edicion-video" width="20" height="20">
+                Edición de video
+            </button>
+        </a>
+
+        <a href="estadisticas.html">
+            <button>
+                <img src="/iconos/bar-chart-line.svg" alt="icono-estadisticas" width="20" height="20">
+                Estadisticas</button>
+        </a>
+
+    </div>
+
+    <div class="video-editor">
+
+        <button class="nav-btn" id="prevVideo">◀</button>
+
+
+        <div class="video-container">
+            <video id="mainVideo" controls>
+                <source src="videos/video1-mascotas.mp4" type="video/mp4">
+                Tu navegador no soporta video.
+            </video>
+        </div>
+
+        <button class="nav-btn" id="nextVideo">▶</button>
+
+    </div>
+
+
+    <div class="controls">
+        <select id="filterSelect">
+            <option value="none">Sin filtro</option>
+            <option value="grayscale(100%)">Blanco y negro</option>
+            <option value="sepia(100%)">Sepia</option>
+            <option value="contrast(150%)">Alto contraste</option>
+            <option value="brightness(120%)">Brillo</option>
+            <option value="blur(3px)">Desenfoque</option>
+        </select>
+
+        <button id="downloadBtn">
+
+             <img src="/iconos/download.svg" alt="icono-ra" width="15" height="15">
+
+        </button>
+    </div>
+
+
+    <canvas id="canvas" style="display:none;"></canvas>
+
+    <script src="js/edicion-video.js"></script>
+
+</body>
+
+
+
+</html>
