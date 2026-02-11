@@ -128,7 +128,7 @@ canvas {
 }
 
 #capture {
-  background-color: #c6ff34;
+  background-color: #7e3bed;
   position: absolute;
   bottom: 10px;
   left: 50%;
@@ -164,7 +164,7 @@ canvas {
   position: absolute;
   top: 10px;
   right: 10px;
-  background-color: #c6ff34;
+  background-color: #7e3bed;
   border: none;
   border-radius: 50%;
   width: 32px;
@@ -178,7 +178,7 @@ canvas {
   flex-direction: column;
   align-items: center;
   padding: 20px 10px;
-  gap: 20px;
+  gap: 10px;
 }
 
 #card-content h2, #card-content p{
@@ -192,23 +192,47 @@ canvas {
 
 #card-content p{
   font-family: Zalando-Sans-Regular;
+  font-size: 16px;
+}
+
+hr{
+  width: 100%;
+}
+table{
+  width: 100%;
+  margin: 10px 0px;
+  font-family: Zalando-Sans-Regular;
+  font-size: 16px;
+}
+
+table, th, td{
+  border-collapse: collapse;
+  padding: 5px 10px;
+}
+th{
+  background-color: #7e3bed;
+  color: #000000;
 }
 
 #trivia-btn{
   padding: 8px 15px;
   border: none;
   border-radius: 100px;
-  background: #7e3bed;
+  background: #c6ff34;
   cursor: pointer;
   display: flex;
   align-content: center;
   justify-content: center;
 
   font-family: Zalando-Sans-Medium;
-  color: #ffffff;
+  color: #000000;
   font-size: 16px;
   transition: 0.2s;
   width: 100px;
+}
+#trivia-btn:hover{
+  background-color: #7e3bed;
+  transform: scale(1.1);
 }
 
 .answer{
