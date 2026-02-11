@@ -68,9 +68,9 @@ function attachTriviaEvent() {
     cardContent.innerHTML = `
       <h3>¿Cuántas veces ha sido México sede del Mundial?</h3>
 
-      <button class="answer wrong">1 vez</button>
-      <button class="answer correct">2 veces</button>
-      <button class="answer wrong">3 veces</button>
+      <button class="answer wrong">A) 1 vez</button>
+      <button class="answer correct">B) 2 veces</button>
+      <button class="answer wrong">C) 3 veces</button>
     `;
 
     attachAnswerEvents();

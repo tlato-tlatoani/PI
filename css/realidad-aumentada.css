@@ -1,15 +1,48 @@
+@font-face {
+    font-family: "Alan-Sans";
+    src: url(../assets/fonts/Alan_Sans/AlanSans-VariableFont_wght.ttf)format(truetype);
+}
+
+@font-face {
+    font-family: "Zalando-Sans-Regular";
+    src: url(../assets/fonts/Zalando_Sans/ZalandoSans-Regular.ttf)format(truetype);
+}
+
+@font-face {
+    font-family: "Zalando-Sans-Medium";
+    src: url(../assets/fonts/Zalando_Sans/ZalandoSans-Medium.ttf)format(truetype);
+}
+
+@font-face {
+    font-family: "Zalando-Sans-SemiBold";
+    src: url(../assets/fonts/Zalando_Sans/ZalandoSans-SemiBold.ttf)format(truetype);
+}
+
 header {
-  background-color: #B2B2B2;
   width: 100%;
-  height: 90px;
+  height: 60px;
   top: 0;
   left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #000000b1;
 }
 
 header h1 {
-  color: #000000;
-  font-family: Arial, Helvetica, sans-serif;
+  color: #ffffff;
+  font-family: Alan-Sans;
+  font-size: 30px;
   margin: 20px;
+}
+
+header p{
+  color: #ffffff;
+  margin: 0 30px;
+  background-color: #7f3beda9;
+  padding: 5px 10px;
+  border-radius: 100%;
+  cursor:pointer;
 }
 
 body {
@@ -17,11 +50,12 @@ body {
   position: relative;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
   margin: 0;
   font-family: Arial, sans-serif;
   gap: 10px;
-  background: #D9D9D9;
+  background-image: url("../assets/imagenes/fondo7.jpg");
+  background-size: cover;
+  min-height: 100vh;
 }
 
 .secciones {
@@ -33,23 +67,37 @@ body {
 
 }
 
+a{
+  text-decoration: none;
+}
+
 .secciones button {
-  padding: 20px;
+  padding: 15px 20px;
   border: none;
   border-radius: 100px;
-  background: #B2B2B2;
+  background: #c6ff34;
   cursor: pointer;
+  display: flex;
+  align-content: center;
 
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Zalando-Sans-Medium;
   color: #000000;
-  font-weight: 500;
   font-size: 16px;
+  transition: 0.2s;
+}
+
+.secciones button:hover{
+  background-color: #7e3bed;
+  transform: scale(1.1);
+}
+
+.icono{
+  margin-right: 5px;
 }
 
 .camera-container {
-  width: 320px;
-  height: 320px;
-  margin-top: 10px;
+  width: 400px;
+  height: 400px;
   position: relative;
   border-radius: 20px;
   overflow: hidden;
@@ -62,11 +110,11 @@ body {
   justify-content: center;
   align-items: center;
   gap: 30px;
-  padding: 30px;
+  padding: 20px;
   border-radius: 25px;
 
   max-width: 900px;
-  margin: 40px auto;
+  margin: 0px auto;
 }
 
 
@@ -78,7 +126,7 @@ canvas {
 }
 
 #capture {
-  background-color: #929292;
+  background-color: #c6ff34;
   position: absolute;
   bottom: 10px;
   left: 50%;
@@ -87,17 +135,18 @@ canvas {
   border-radius: 50%;
   padding: 12px;
   font-size: 20px;
+  cursor: pointer;
 }
 
 .card {
-  width: 285px;
-  height: 285px;
+  width: 360px;
+  height: 360px;
 
-  background: #cfcfcf;
+  background: #000000;
   border-radius: 25px;
-  margin: 25px auto;
   padding: 20px;
   position: relative;
+  color: #ffffff;
 
   display: flex;
   flex-direction: column;
@@ -113,7 +162,7 @@ canvas {
   position: absolute;
   top: 10px;
   right: 10px;
-  background: rgba(0, 0, 0, 0.2);
+  background-color: #c6ff34;
   border: none;
   border-radius: 50%;
   width: 32px;
@@ -121,3 +170,99 @@ canvas {
   font-size: 18px;
   cursor: pointer;
 }
+
+#card-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 10px;
+  gap: 20px;
+}
+
+#card-content h2, #card-content p{
+  width: 100%;
+  text-align: left;
+  margin: 0;
+}
+#card-content h2{
+  font-family: Zalando-Sans-SemiBold;
+}
+
+#card-content p{
+  font-family: Zalando-Sans-Regular;
+}
+
+#trivia-btn{
+  padding: 8px 15px;
+  border: none;
+  border-radius: 100px;
+  background: #7e3bed;
+  cursor: pointer;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+
+  font-family: Zalando-Sans-Medium;
+  color: #ffffff;
+  font-size: 16px;
+  transition: 0.2s;
+  width: 100px;
+}
+
+.answer.wrong, .answer.correct{
+  color: #ffffff;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+@media (max-width: 768px) {
+    .btn-text {
+        display: none;
+    }
+
+    .secciones{
+      margin: 10px 0px 0px 0px;
+    }
+
+    .seccion {
+        justify-content: center;
+        width: 60px;   /* opcional: hacerlo más compacto */
+        height: 60px;  /* opcional */
+    }
+
+    .icono {
+        width: 28px;
+        height: 28px;
+        margin: 0;
+    }
+
+    .camera-container {
+      width: 300px;
+      height: 300px;
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      background: #BCBCBC;
+    }
+
+    .escaneado{
+      display: flex;
+      flex-direction: column;
+    }
+
+    #info-card{
+      width: 260px;
+      height: 260px;
+      margin-bottom: 20px;
+    }
+}
+
+/*
+PALETA DE COLORES
+blanco: #ffffff
+Lime: #c6ff34
+MORADO: #7e3bed
+NEGRO: #000000
+*/

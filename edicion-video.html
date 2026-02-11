@@ -11,29 +11,33 @@
 
 <body>
     <header>
-        <h1>Nombre de la Aplicación</h1>
+        <h1>MexScan</h1>
+        <p>?</p>
     </header>
 
     <div class="secciones">
         <a href="realidad-aumentada.html">
 
-            <button>
-                <img src="/iconos/box.svg" alt="icono-ra" width="20" height="20">Realidad Aumentada</button>
+            <button class="seccion">
+                <img src="../assets/iconos/box.svg" alt="icono-ra" width="20" height="20" class="icono">
+                <span class="btn-text">Realidad Aumentada</span>
+            </button>
         </a>
 
         <a href="edicion-video.html">
 
-            <button>
-                <img src="/iconos/camera-reels.svg" alt="icono-edicion-video" width="20" height="20">
-                Edición de video
+            <button class="seccion">
+                <img src="../assets/iconos/camera-reels.svg" alt="icono-edicion-video" width="20" height="20" class="icono">
+                <span class="btn-text">Edición de video</span>
             </button>
         </a>
-
+        <!--
         <a href="estadisticas.html">
             <button>
-                <img src="/iconos/bar-chart-line.svg" alt="icono-estadisticas" width="20" height="20">
+                <img src="../assets/iconos/bar-chart-line.svg" alt="icono-estadisticas" width="20" height="20">
                 Estadisticas</button>
         </a>
+        -->
 
     </div>
 
@@ -57,8 +61,6 @@
     <div class="controls">
         <select id="filterSelect">
             <option value="none">Sin filtro</option>
-            <option value="grayscale(100%)">Blanco y negro</option>
-            <option value="sepia(100%)">Sepia</option>
             <option value="contrast(150%)">Alto contraste</option>
             <option value="brightness(120%)">Brillo</option>
             <option value="blur(3px)">Desenfoque</option>
@@ -66,7 +68,7 @@
 
         <button id="downloadBtn">
 
-             <img src="/iconos/download.svg" alt="icono-ra" width="15" height="15">
+             <img src="../assets/iconos/download.svg" alt="icono-ra" width="15" height="15">
 
         </button>
     </div>
