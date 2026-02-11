@@ -32,13 +32,15 @@ header h1 {
   margin: 20px;
 }
 
-header p{
+header button{
   color: #ffffff;
   margin: 0 30px;
-  background-color: #7f3bed;
+  background-color: #7e3bed;
   padding: 5px 10px;
   border-radius: 100%;
   cursor:pointer;
+  border: none;
+  font-size: 15px;
 }
 
 body {

@@ -36,13 +36,15 @@ header h1 {
   margin: 20px;
 }
 
-header p{
+header button{
   color: #ffffff;
   margin: 0 30px;
-  background-color: #7f3beda9;
+  background-color: #7e3bed;
   padding: 5px 10px;
   border-radius: 100%;
   cursor:pointer;
+  border: none;
+  font-size: 15px;
 }
 
 body {
@@ -209,12 +211,25 @@ canvas {
   width: 100px;
 }
 
-.answer.wrong, .answer.correct{
+.answer{
   color: #ffffff;
   background-color: transparent;
   border: none;
   cursor: pointer;
   align-self: flex-start;
+  width: 100%;
+  text-align: left;
+  transition: 0.2s;
+  font-family: Zalando-Sans-Regular;
+  font-size: 14px;
+}
+
+.answer:hover{
+  background-color: #c6ff34;
+  border-radius: 20px;
+  color: #000000;
+  padding: 5px;
+  font-family: Zalando-Sans-Medium;
 }
 
 @media (max-width: 768px) {

@@ -31,4 +31,17 @@
     video.style.filter = filterSelect.value;
   });
 
-  
+//boton de ayuda
+document.getElementById("help-btn").addEventListener("click", function() {
+    Swal.fire({
+        title: "¿Cómo usar MexScan?",
+        html: `
+            <p>1. Elige un video.</p>
+            <p>2. Selecciona el filtro que mas te guste.</p>
+            <p>3. Descarga el video editado.</p>
+        `,
+        icon: "info",
+        confirmButtonText: "Entendido",
+        confirmButtonColor: "#7e3bed"
+    });
+});
