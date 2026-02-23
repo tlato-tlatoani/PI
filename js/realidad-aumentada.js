@@ -1,123 +1,64 @@
-const video = document.getElementById('camera');
-const canvas = document.getElementById('photo');
-const button = document.getElementById('capture');
 const card = document.getElementById('info-card');
+const cardContent = document.getElementById('card-content');
+const closeBtn = document.getElementById('close-card');
 
 
-const context = canvas.getContext('2d');
+document.addEventListener("DOMContentLoaded", () => {
+    const sceneEl = document.querySelector('a-scene');
+    const targetEl = document.querySelector('a-entity[mindar-image-target]');
 
-const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
-
-
-const constraints = {
-  video: isMobile
-    ? { facingMode: { ideal: "environment" } }
-    : true,
-  audio: false
-};
-
-
-let cameraActive = false;
-
-
-navigator.mediaDevices.getUserMedia(constraints)
-  .then(stream => {
-    video.srcObject = stream;
-    cameraActive = true;
-  })
-  .catch(error => {
-    console.error("No se pudo acceder a la cámara:", error);
-  });
-
-
-// --TOMAR FOTO--
-button.addEventListener('click', () => {
-  if (!cameraActive) {
-    console.warn("La cámara no está activa");
-    Swal.fire({
-      icon: "error",
-      title: "ERROR",
-      text: "No se pudo acceder a la cámara. Por favor, verifica los permisos y vuelve a intentarlo."
+    // evento cuando encuentra la imagen
+    targetEl.addEventListener("targetFound", event => {
+        console.log("¡Objetivo detectado!");
+        card.classList.remove('hidden');
     });
-    return;
-  }
 
-  canvas.width = video.videoWidth;
-  canvas.height = video.videoHeight;
-
-  context.drawImage(video, 0, 0);
-
-  video.style.display = 'none';
-  canvas.hidden = false;
-  card.classList.remove('hidden');
-
-  attachTriviaEvent();
+    // Evento cuando se pierde la imagen
+    targetEl.addEventListener("targetLost", event => {
+        console.log("Objetivo perdido");
+    });
 });
 
 
-const closeBtn = document.getElementById('close-card');
-const cardContent = document.getElementById('card-content');
-
-closeBtn.addEventListener('click', resetCamera);
-
 function attachTriviaEvent() {
-  const triviaBtn = document.getElementById('trivia-btn');
-  if (!triviaBtn) return;
-
-  triviaBtn.addEventListener('click', () => {
-    cardContent.innerHTML = `
-      <h3>¿Cuántas veces ha sido México sede del Mundial?</h3>
-
-      <button class="answer wrong">A) 1 vez</button>
-      <button class="answer correct">B) 2 veces</button>
-      <button class="answer wrong">C) 3 veces</button>
-    `;
-
-    attachAnswerEvents();
-  });
+    const triviaBtn = document.getElementById('trivia-btn');
+    if (triviaBtn) {
+        triviaBtn.addEventListener('click', () => {
+            cardContent.innerHTML = `
+                <h2>Trivia: ¿En qué año ganó México su primer oro olímpico?</h2>
+                <button class="answer">2008</button>
+                <button class="answer correct">2012</button>
+                <button class="answer">2016</button>
+            `;
+            attachAnswerEvents();
+        });
+    }
 }
 
 function attachAnswerEvents() {
-  document.querySelectorAll('.answer').forEach(btn => {
-    btn.addEventListener('click', () => {
-      if (btn.classList.contains('correct')) {
-        Swal.fire({
-          icon: 'success',
-          title: '¡Correcto!',
-          text: 'Excelente, sigue escaneando escudos',
-          confirmButtonText: 'Continuar'
-        }).then(() => {
-          resetCamera();
+    document.querySelectorAll('.answer').forEach(btn => {
+        btn.addEventListener('click', () => {
+            if (btn.classList.contains('correct')) {
+                Swal.fire({ icon: 'success', title: '¡Correcto!' }).then(() => resetUI());
+            } else {
+                btn.style.background = '#f44336';
+            }
         });
-      } else {
-        btn.style.background = '#f44336';
-
-        document.querySelector('.correct').style.background = '#4caf50';
-      }
     });
-  });
 }
 
-
-function resetCamera() {
-  // mostrar cámara
-  video.style.display = 'block';
-
-  // ocultar foto
-  canvas.hidden = true;
-
-  // ocultar tarjeta
-  card.classList.add('hidden');
-
-  // restaurar contenido inicial
-  cardContent.innerHTML = `
-    <h2>Imagen escaneada</h2>
-                <p>Información del país...</p>
-                <button id="trivia-btn">Trivia</button>
-  `;
-
-  attachTriviaEvent();
+function resetUI() {
+    card.classList.add('hidden');
+    cardContent.innerHTML = `
+        <h2>Imagen escaneada</h2>
+        <p>Información del país...</p>
+        <button id="trivia-btn">Trivia</button>
+    `;
+    attachTriviaEvent();
 }
+
+closeBtn.addEventListener('click', () => card.classList.add('hidden'));
+attachTriviaEvent();
 
 //boton de ayuda
 document.getElementById("help-btn").addEventListener("click", function() {
