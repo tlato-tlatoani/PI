@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/realidad-aumentada.css">
 
+    <!-- realidad aumentada -->
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.1.5/dist/mindar-image.prod.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.1.5/dist/mindar-image-aframe.prod.js"></script>
+
     <title>Realidad Aumentada</title>
 </head>
 
@@ -27,7 +32,8 @@
         <a href="edicion-video.html">
 
             <button class="seccion">
-                <img src="../assets/iconos/video-camera.png" alt="icono-edicion-video" width="20" height="20" class="icono">
+                <img src="../assets/iconos/video-camera.png" alt="icono-edicion-video" width="20" height="20"
+                    class="icono">
                 <span class="btn-text">Edición de video</span>
             </button>
         </a>
@@ -44,14 +50,40 @@
 
     <div class="escaneado">
         <div class="camera-container">
-            <video id="camera" autoplay playsinline></video>
-            <canvas id="photo" hidden></canvas>
+            <a-scene mindar-image="imageTargetSrc: ./targets.mind; autoStart: true;" embedded renderer="alpha: true"
+                color-space="sRGB" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+                <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
-            <button id="capture">
+                <a-entity mindar-image-target="targetIndex: 0"> <!--españa-->
+                    <a-box position="0 0.5 0" material="color: red;" scale="0.5 0.5 0.5"></a-box>
+                </a-entity>
+                <a-entity mindar-image-target="targetIndex: 1"> <!--corea-->
+                    <a-box position="0 0.5 0" material="color: blue;" scale="0.5 0.5 0.5"></a-sphere>
+                </a-entity>
+                <a-entity mindar-image-target="targetIndex: 2"> <!--japon-->
+                    <a-box position="0 0.5 0" material="color: green;" scale="0.5 0.5 0.5"></a-box>
+                </a-entity>
+                <a-entity mindar-image-target="targetIndex: 3">    <!--uzbekistan-->
+                    <a-box position="0 0.5 0" material="color: yellow;" scale="0.5 0.5 0.5"></a-box>
+                </a-entity>
+                <a-entity mindar-image-target="targetIndex: 4"> <!--mexico-->
+                    <a-box position="0 0.5 0" material="color: pink;" scale="0.5 0.5 0.5"></a-box>
+                </a-entity>
+                <a-entity mindar-image-target="targetIndex: 5"> <!--tunez-->
+                    <a-box position="0 0.5 0" material="color: orange;" scale="0.5 0.5 0.5"></a-box>
+                </a-entity>
+                <a-entity mindar-image-target="targetIndex: 6"> <!--uruguay-->        
+                    <a-box position="0 0.5 0" material="color: cyan;" scale="0.5 0.5 0.5"></a-box>
+                </a-entity>
+                <a-entity mindar-image-target="targetIndex: 7"> <!--sudafrica-->
+                    <a-box position="0 0.5 0" material="color: magenta;" scale="0.5 0.5 0.5"></a-box>
+                </a-entity>
+                <a-entity mindar-image-target="targetIndex: 8"> <!--colombia-->
+                    <a-box position="0 0.5 0" material="color: gray;" scale="0.5 0.5 0.5"></a-box>
+                </a-entity>
 
-                <img src="../assets/iconos/camera.svg" alt="icono-camara" width="32" height="32">
+            </a-scene>
 
-            </button>
         </div>
 
         <div id="info-card" class="card hidden">
@@ -87,6 +119,8 @@
 
     <script src="js/realidad-aumentada.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
 
 
 </body>

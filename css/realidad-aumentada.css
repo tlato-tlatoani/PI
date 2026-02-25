@@ -1,21 +1,21 @@
 @font-face {
-    font-family: "Alan-Sans";
-    src: url(../assets/fonts/Alan_Sans/AlanSans-VariableFont_wght.ttf)format(truetype);
+  font-family: "Alan-Sans";
+  src: url(../assets/fonts/Alan_Sans/AlanSans-VariableFont_wght.ttf)format(truetype);
 }
 
 @font-face {
-    font-family: "Zalando-Sans-Regular";
-    src: url(../assets/fonts/Zalando_Sans/ZalandoSans-Regular.ttf)format(truetype);
+  font-family: "Zalando-Sans-Regular";
+  src: url(../assets/fonts/Zalando_Sans/ZalandoSans-Regular.ttf)format(truetype);
 }
 
 @font-face {
-    font-family: "Zalando-Sans-Medium";
-    src: url(../assets/fonts/Zalando_Sans/ZalandoSans-Medium.ttf)format(truetype);
+  font-family: "Zalando-Sans-Medium";
+  src: url(../assets/fonts/Zalando_Sans/ZalandoSans-Medium.ttf)format(truetype);
 }
 
 @font-face {
-    font-family: "Zalando-Sans-SemiBold";
-    src: url(../assets/fonts/Zalando_Sans/ZalandoSans-SemiBold.ttf)format(truetype);
+  font-family: "Zalando-Sans-SemiBold";
+  src: url(../assets/fonts/Zalando_Sans/ZalandoSans-SemiBold.ttf)format(truetype);
 }
 
 header {
@@ -27,7 +27,15 @@ header {
   align-items: center;
   justify-content: space-between;
   background-color: #000000b1;
+   z-index: 20;
 }
+
+header,
+.secciones {
+  position: relative;
+  z-index: 20;
+}
+
 
 header h1 {
   color: #ffffff;
@@ -36,13 +44,13 @@ header h1 {
   margin: 20px;
 }
 
-header button{
+header button {
   color: #ffffff;
   margin: 0 30px;
   background-color: #7e3bed;
   padding: 5px 10px;
   border-radius: 100%;
-  cursor:pointer;
+  cursor: pointer;
   border: none;
   font-size: 15px;
 }
@@ -69,7 +77,7 @@ body {
 
 }
 
-a{
+a {
   text-decoration: none;
 }
 
@@ -88,23 +96,15 @@ a{
   transition: 0.2s;
 }
 
-.secciones button:hover{
+.secciones button:hover {
   background-color: #7e3bed;
   transform: scale(1.1);
 }
 
-.icono{
+.icono {
   margin-right: 5px;
 }
 
-.camera-container {
-  width: 400px;
-  height: 400px;
-  position: relative;
-  border-radius: 20px;
-  overflow: hidden;
-  background: #BCBCBC;
-}
 
 
 .escaneado {
@@ -120,24 +120,34 @@ a{
 }
 
 
-video,
-canvas {
-  width: 100%;
-  height: 100%;
+.camera-container {
+  width: 400px;
+  height: 400px;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  background: transparent !important;
+  z-index: 1;
+}
+
+
+.camera-container video {
+  width: 100% !important;
+  height: 100% !important;
+  position: absolute;
+  top: 0;
+  left: 0;
   object-fit: cover;
 }
 
-#capture {
-  background-color: #7e3bed;
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  border: none;
-  border-radius: 50%;
-  padding: 12px;
-  font-size: 20px;
-  cursor: pointer;
+
+a-scene {
+  width: 100%;
+  height: 100%;
+}
+
+a-scene canvas {
+  pointer-events: none;
 }
 
 .card {
@@ -173,7 +183,7 @@ canvas {
   cursor: pointer;
 }
 
-#card-content{
+#card-content {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -181,40 +191,46 @@ canvas {
   gap: 10px;
 }
 
-#card-content h2, #card-content p{
+#card-content h2,
+#card-content p {
   width: 100%;
   text-align: left;
   margin: 0;
 }
-#card-content h2{
+
+#card-content h2 {
   font-family: Zalando-Sans-SemiBold;
 }
 
-#card-content p{
+#card-content p {
   font-family: Zalando-Sans-Regular;
   font-size: 16px;
 }
 
-hr{
+hr {
   width: 100%;
 }
-table{
+
+table {
   width: 100%;
   margin: 10px 0px;
   font-family: Zalando-Sans-Regular;
   font-size: 16px;
 }
 
-table, th, td{
+table,
+th,
+td {
   border-collapse: collapse;
   padding: 5px 10px;
 }
-th{
+
+th {
   background-color: #7e3bed;
   color: #000000;
 }
 
-#trivia-btn{
+#trivia-btn {
   padding: 8px 15px;
   border: none;
   border-radius: 100px;
@@ -230,12 +246,13 @@ th{
   transition: 0.2s;
   width: 100px;
 }
-#trivia-btn:hover{
+
+#trivia-btn:hover {
   background-color: #7e3bed;
   transform: scale(1.1);
 }
 
-.answer{
+.answer {
   color: #ffffff;
   background-color: transparent;
   border: none;
@@ -248,7 +265,7 @@ th{
   font-size: 14px;
 }
 
-.answer:hover{
+.answer:hover {
   background-color: #c6ff34;
   border-radius: 20px;
   color: #000000;
@@ -257,45 +274,56 @@ th{
 }
 
 @media (max-width: 768px) {
-    .btn-text {
-        display: none;
-    }
+  .btn-text {
+    display: none;
+  }
 
-    .secciones{
-      margin: 10px 0px 0px 0px;
-    }
+  .secciones {
+    margin: 10px 0px 0px 0px;
+  }
 
-    .seccion {
-        justify-content: center;
-        width: 60px;   /* opcional: hacerlo más compacto */
-        height: 60px;  /* opcional */
-    }
+  .seccion {
+    justify-content: center;
+    width: 60px;
+    /* opcional: hacerlo más compacto */
+    height: 60px;
+    /* opcional */
+  }
 
-    .icono {
-        width: 28px;
-        height: 28px;
-        margin: 0;
-    }
+  .icono {
+    width: 28px;
+    height: 28px;
+    margin: 0;
+  }
 
-    .camera-container {
-      width: 300px;
-      height: 300px;
-      position: relative;
-      border-radius: 20px;
-      overflow: hidden;
-      background: #BCBCBC;
-    }
 
-    .escaneado{
-      display: flex;
-      flex-direction: column;
-    }
+  .escaneado {
+    display: flex;
+    flex-direction: column;
+  }
 
-    #info-card{
-      width: 260px;
-      height: 260px;
-      margin-bottom: 20px;
-    }
+  #info-card {
+    width: 260px;
+    height: 260px;
+    margin-bottom: 20px;
+  }
+}
+
+.mindar-ui-overlay {
+  z-index: 1;
+}
+
+
+a-scene {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+
+a-scene canvas {
+  pointer-events: none;
 }
 
 /*
