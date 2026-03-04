@@ -333,9 +333,9 @@ th {
     padding-top: 0;
     padding-bottom: 45px;
   }
-  #info-card {
+  .card {
     width: 260px;
-    height: 260px;
+    height: 100%;
     margin-bottom: 20px;
   }
 }

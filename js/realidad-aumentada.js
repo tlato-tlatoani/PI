@@ -19,7 +19,7 @@ document.getElementById("help-btn").addEventListener("click", function() {
     Swal.fire({
         title: "¿Cómo usar MexScan?",
         html: `
-            <p>1. Escanea una bandera o escudo.</p>
+            <p>1. Escanea un escudo.</p>
             <p>2. Consulta la información del país.</p>
             <p>3. Prueba la sección de trivia para aprender más.</p>
         `,
