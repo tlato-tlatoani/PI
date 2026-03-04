@@ -140,6 +140,27 @@ a {
   object-fit: cover;
 }
 
+.play-animation {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    font-size: 24px;
+    padding: 15px 20px;
+    border-radius: 50%;
+    border: none;
+    background-color: #c6ff34;
+    color: #000000;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#play-btn:not(.hidden) {
+  opacity: 1;
+}
+
 .scanning{
   padding-top: 100px;
 }
@@ -313,6 +334,7 @@ th {
   .camera-container {
     width: 300px;
     height: 300px;
+    position: relative;
   }
 
   .camera-container video {
@@ -323,7 +345,7 @@ th {
     left: 0 !important;
     object-fit: cover;
   }
-
+  
   .escaneado {
     display: flex;
     flex-direction: column;

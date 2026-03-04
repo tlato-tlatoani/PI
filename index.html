@@ -50,6 +50,7 @@
 
     <div class="escaneado">
         <div class="camera-container">
+            
             <a-scene mindar-image="imageTargetSrc: ./targets.mind; autoStart: true;" embedded renderer="alpha: true"
                 color-space="sRGB" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
                 <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
@@ -92,6 +93,7 @@
 
             </a-scene>
 
+            <button id="play-btn" class="play-animation hidden">▶</button>
         </div>
 
         <div id="info-card" class="card hidden">

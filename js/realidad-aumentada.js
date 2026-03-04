@@ -38,12 +38,14 @@ document.querySelectorAll("[mindar-image-target]").forEach((entity) => {
 
     if (datos[clave]) {
         mostrarInfo(clave);
+        document.getElementById("play-btn").classList.remove("hidden");
     }
 
     });
 
     entity.addEventListener("targetLost", () => {
         document.getElementById("info-card").classList.add("hidden");
+        document.getElementById("play-btn").classList.add("hidden");
     });
 
 });
