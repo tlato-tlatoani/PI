@@ -136,10 +136,13 @@ a {
   height: 100% !important;
   position: absolute;
   top: 0;
-  left: 0;
+  left: 0 !important;
   object-fit: cover;
 }
 
+.scanning{
+  padding-top: 100px;
+}
 
 a-scene {
   width: 100%;
@@ -166,7 +169,7 @@ a-scene canvas {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 
@@ -186,8 +189,7 @@ a-scene canvas {
 #card-content {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 20px 10px;
+  padding: 0px 10px;
   gap: 10px;
 }
 
@@ -200,11 +202,25 @@ a-scene canvas {
 
 #card-content h2 {
   font-family: Zalando-Sans-SemiBold;
+  padding: 5px 0px;
 }
 
 #card-content p {
   font-family: Zalando-Sans-Regular;
-  font-size: 16px;
+  font-size: 15px;
+}
+
+#info-view{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#trivia-view{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 hr {
@@ -215,7 +231,7 @@ table {
   width: 100%;
   margin: 10px 0px;
   font-family: Zalando-Sans-Regular;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 table,
@@ -259,10 +275,10 @@ th {
   cursor: pointer;
   align-self: flex-start;
   width: 100%;
-  text-align: left;
+  text-align: center;
   transition: 0.2s;
   font-family: Zalando-Sans-Regular;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .answer:hover {
@@ -285,9 +301,7 @@ th {
   .seccion {
     justify-content: center;
     width: 60px;
-    /* opcional: hacerlo más compacto */
     height: 60px;
-    /* opcional */
   }
 
   .icono {
@@ -296,15 +310,32 @@ th {
     margin: 0;
   }
 
+  .camera-container {
+    width: 300px;
+    height: 300px;
+  }
+
+  .camera-container video {
+    width: 100% !important;
+    height: 100% !important;
+    position: absolute;
+    top: 0 !important;
+    left: 0 !important;
+    object-fit: cover;
+  }
 
   .escaneado {
     display: flex;
     flex-direction: column;
   }
 
-  #info-card {
+  .scanning{
+    padding-top: 0;
+    padding-bottom: 45px;
+  }
+  .card {
     width: 260px;
-    height: 260px;
+    height: 100%;
     margin-bottom: 20px;
   }
 }
