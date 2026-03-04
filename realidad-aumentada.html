@@ -54,31 +54,39 @@
                 color-space="sRGB" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
                 <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
-                <a-entity mindar-image-target="targetIndex: 0"> <!--españa-->
+                <a-entity data-clave="espana" mindar-image-target="targetIndex: 0"> <!--españa-->
                     <a-box position="0 0.5 0" material="color: red;" scale="0.5 0.5 0.5"></a-box>
                 </a-entity>
-                <a-entity mindar-image-target="targetIndex: 1"> <!--corea-->
+
+                <a-entity data-clave="corea_del_sur" mindar-image-target="targetIndex: 1"> <!--corea-->
                     <a-box position="0 0.5 0" material="color: blue;" scale="0.5 0.5 0.5"></a-sphere>
                 </a-entity>
-                <a-entity mindar-image-target="targetIndex: 2"> <!--japon-->
+
+                <a-entity data-clave="japon" mindar-image-target="targetIndex: 2"> <!--japon-->
                     <a-box position="0 0.5 0" material="color: green;" scale="0.5 0.5 0.5"></a-box>
                 </a-entity>
-                <a-entity mindar-image-target="targetIndex: 3">    <!--uzbekistan-->
+
+                <a-entity data-clave="uzbekistan" mindar-image-target="targetIndex: 3">    <!--uzbekistan-->
                     <a-box position="0 0.5 0" material="color: yellow;" scale="0.5 0.5 0.5"></a-box>
                 </a-entity>
-                <a-entity mindar-image-target="targetIndex: 4"> <!--mexico-->
+
+                <a-entity data-clave="mexico" mindar-image-target="targetIndex: 4"> <!--mexico-->
                     <a-box position="0 0.5 0" material="color: pink;" scale="0.5 0.5 0.5"></a-box>
                 </a-entity>
-                <a-entity mindar-image-target="targetIndex: 5"> <!--tunez-->
+
+                <a-entity data-clave="tunez" mindar-image-target="targetIndex: 5"> <!--tunez-->
                     <a-box position="0 0.5 0" material="color: orange;" scale="0.5 0.5 0.5"></a-box>
                 </a-entity>
-                <a-entity mindar-image-target="targetIndex: 6"> <!--uruguay-->        
+
+                <a-entity data-clave="uruguay" mindar-image-target="targetIndex: 6"> <!--uruguay-->        
                     <a-box position="0 0.5 0" material="color: cyan;" scale="0.5 0.5 0.5"></a-box>
                 </a-entity>
-                <a-entity mindar-image-target="targetIndex: 7"> <!--sudafrica-->
+
+                <a-entity data-clave="sudafrica" mindar-image-target="targetIndex: 7"> <!--sudafrica-->
                     <a-box position="0 0.5 0" material="color: magenta;" scale="0.5 0.5 0.5"></a-box>
                 </a-entity>
-                <a-entity mindar-image-target="targetIndex: 8"> <!--colombia-->
+
+                <a-entity data-clave="colombia" mindar-image-target="targetIndex: 8"> <!--colombia-->
                     <a-box position="0 0.5 0" material="color: gray;" scale="0.5 0.5 0.5"></a-box>
                 </a-entity>
 
@@ -90,28 +98,36 @@
             <button id="close-card" class="close-btn">✕</button>
 
             <div id="card-content">
-                <h2>Imagen escaneada</h2>
-                <p>Información del país...</p>
-                <hr>
-                <p>Participaciones anteriores:</p>
-                <table>
-                    <tr>
-                        <th>Año</th>
-                        <th>Mundial</th>
-                        <th>Instancia</th>
-                    </tr>
-                    <tr>
-                        <td>2010</td>
-                        <td>Sudafrica</td>
-                        <td>Cuartos de final</td>
-                    </tr>
-                    <tr>
-                        <td>2022</td>
-                        <td>Qatar</td>
-                        <td>Semifinal</td>
-                    </tr>
-                </table>
-                <button id="trivia-btn">Trivia</button>
+
+                <!-- INFORMACIÓN -->
+                <div id="info-view">
+
+                    <h2 id="card-nombre"></h2>
+                    <p id="card-descripcion"></p>
+
+                    <hr>
+
+                    <p><strong>Mejores resultados:</strong></p>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Año</th>
+                                <th>Mundial</th>
+                                <th>Instancia</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-resultados"></tbody>
+                    </table>
+
+                    <button id="trivia-btn">Trivia</button>
+                </div>
+
+
+                <!-- TRIVIA -->
+                <div id="trivia-view" class="hidden">
+                </div>
+
             </div>
         </div>
 
