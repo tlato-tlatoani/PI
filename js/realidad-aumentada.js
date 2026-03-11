@@ -223,28 +223,28 @@ function crearParticulas(entity, tipo){
   if(tipo === "hojas"){
 
     p.setAttribute("particle-system",
-      "particleCount:120; color:#4CAF50,#8BC34A; velocityValue:0 0.15 0;  startEvents:startAnim; pauseEvents:stopAnim");
+      "particleCount:120; color:#4CAF50,#8BC34A; velocityValue:0 0.15 0; enabled:false");
 
   }
 
   if(tipo === "humo"){
 
     p.setAttribute("particle-system",
-      "particleCount:90; color:#dddddd; velocityValue:0 0.5 0; size:0.5;  startEvents:startAnim; pauseEvents:stopAnim");
+      "particleCount:90; color:#dddddd; velocityValue:0 0.5 0; size:0.5; enabled:false");
 
   }
 
   if(tipo === "luciernagas"){
 
     p.setAttribute("particle-system",
-      "particleCount:80; color:#ffff99,#fff176; size:0.2; startEvents:startAnim; pauseEvents:stopAnim");
+      "particleCount:80; color:#ffff99,#fff176; size:0.2; enabled:false");
 
   }
 
   if(tipo === "musica"){
 
     p.setAttribute("particle-system",
-      "particleCount:100; color:#ffcc00,#ffffff; velocityValue:0 0.3 0; startEvents:startAnim; pauseEvents:stopAnim");
+      "particleCount:100; color:#ffcc00,#ffffff; velocityValue:0 0.3 0; enabled:false");
 
   }
 
@@ -263,6 +263,7 @@ btn.addEventListener("click", () => {
   if (!modelo) return;
 
   const rotador = modelo.parentElement;
+  const particulas = document.querySelector(".particulas");
 
   if (!playing) {
 
@@ -271,6 +272,10 @@ btn.addEventListener("click", () => {
 
     if (modelo.components["animation-mixer"]) {
       modelo.setAttribute("animation-mixer", "timeScale: 1");
+    }
+
+    if(particulas){
+      particulas.setAttribute("particle-system","enabled: true");
     }
 
     btn.innerText = "⏸";
@@ -284,10 +289,12 @@ btn.addEventListener("click", () => {
       modelo.setAttribute("animation-mixer", "timeScale: 0");
     }
 
-    btn.innerText = "▶";
+    if(particulas){
+      particulas.setAttribute("particle-system","enabled: false");
+    }
 
+    btn.innerText = "▶";
   }
 
   playing = !playing;
-
 });
