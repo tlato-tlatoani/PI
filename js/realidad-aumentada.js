@@ -173,15 +173,12 @@ function crearExperiencia(entity, clave) {
   modelo.setAttribute("animation-mixer","loop:repeat");
   modelo.id = "modelo-activo";
 
-  // Animación de aparición
   modelo.setAttribute("animation__appear",
     `property: scale; from: 0 0 0; to: ${escalaFinal}; dur: 1000; easing: easeOutBack`);
 
-  // NUEVO: Animación de subir y bajar (Levitar)
   modelo.setAttribute("animation__levitate",
     "property: position; from: 0 0 0; to: 0 0.2 0; loop: true; dir: alternate; dur: 2000; easing: easeInOutSine; startEvents: startAnim; pauseEvents: stopAnim");
 
-  // Contenedor de ROTACIÓN
   const rotador = document.createElement("a-entity");
 
   rotador.setAttribute("animation__rotate",
@@ -195,12 +192,11 @@ function crearExperiencia(entity, clave) {
       `clip: ${datos[clave].animacion}; loop: repeat; timeScale: 0`); // Iniciamos en 0 (pausado)
   }
 
-  crearParticulas(entity, datos[clave].particulas);
+  /*crearParticulas(entity, datos[clave].particulas);*/
 }
 
 // Sistema de particulas
-
-function crearParticulas(entity, tipo) {
+/*function crearParticulas(entity, tipo) {
 
   const p = document.createElement("a-entity");
   p.classList.add("particulas");
@@ -260,9 +256,9 @@ function crearParticulas(entity, tipo) {
 
   entity.appendChild(p);
 
-}
+}*/
 
-// Boton de play-stop
+
 
 const btn = document.getElementById("play-btn");
 let playing = false;
