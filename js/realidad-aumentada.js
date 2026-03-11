@@ -169,6 +169,8 @@ function crearExperiencia(entity, clave) {
   modelo.setAttribute("src", datos[clave].modelo);
   modelo.setAttribute("scale", "0 0 0"); // Inicia en 0 para el efecto appear
   modelo.setAttribute("position", "0 0.01 0");
+  modelo.setAttribute("shadow","cast:false; receive:false");
+  modelo.setAttribute("animation-mixer","loop:repeat");
   modelo.id = "modelo-activo";
 
   // Animación de aparición

@@ -46,7 +46,7 @@
         <div class="camera-container">
             
             <a-scene mindar-image="imageTargetSrc: ./targets.mind; autoStart: true;" embedded renderer="alpha: true"
-                color-space="sRGB" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+                color-space="sRGB" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false mindar-image="maxTrack:1"">
 
                 <!-- Pre-cargar los modelos -->
                 <a-assets> <a-asset-item id="mexicoModel" src="./assets/modelos/pinata.glb"></a-asset-item> </a-assets>
