@@ -151,44 +151,41 @@ function volverAInformacion() {
   mostrarInfo(seleccionActual);
 }
 
-// Cargar modelo
 function crearExperiencia(entity, clave){
-
   const container = entity.querySelector(".modelo-container");
   container.innerHTML = "";
 
   const modelo = document.createElement("a-gltf-model");
+  const escalaFinal = datos[clave].scale || "0.3 0.3 0.3";
 
   modelo.setAttribute("src", datos[clave].modelo);
-  modelo.setAttribute("scale", datos[clave].scale || "0.3 0.3 0.3");
+  modelo.setAttribute("scale", "0 0 0"); // Inicia en 0 para el efecto appear
   modelo.setAttribute("position","0 0 0");
   modelo.id = "modelo-activo";
-  modelo.setAttribute(
-  "animation__appear",
-  `property: scale; from:0 0 0; to:${datos[clave].scale}; dur:1000; easing:easeOutBack`
-  );
+  
+  // Animación de aparición
+ modelo.setAttribute("animation__appear", 
+    `property: scale; from: 0 0 0; to: ${escalaFinal}; dur: 1000; easing: easeOutBack`);
 
-  // ROTACION PARA TODOS
+  // NUEVO: Animación de subir y bajar (Levitar)
+modelo.setAttribute("animation__levitate", 
+"property: position; from: 0 0 0; to: 0 0.2 0; loop: true; dir: alternate; dur: 2000; easing: easeInOutSine; startEvents: startAnim; pauseEvents: stopAnim");
+    
+  // Contenedor de ROTACIÓN
   const rotador = document.createElement("a-entity");
 
-  rotador.setAttribute(
-    "animation",
-    "property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear; autoplay: false"
-  );
+rotador.setAttribute("animation__rotate", 
+"property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear; startEvents: startAnim; pauseEvents: stopAnim");;
 
   rotador.appendChild(modelo);
   container.appendChild(rotador);
 
-  // ANIMACION GLB SOLO SI EXISTE
   if(datos[clave].animacion){
-      modelo.setAttribute(
-        "animation-mixer",
-        `clip: ${datos[clave].animacion}; loop: repeat; timeScale: 1`
-      );
+      modelo.setAttribute("animation-mixer", 
+        `clip: ${datos[clave].animacion}; loop: repeat; timeScale: 0`); // Iniciamos en 0 (pausado)
   }
 
   crearParticulas(entity, datos[clave].particulas);
-
 }
 
 // Sistema de particulas
@@ -203,14 +200,14 @@ function crearParticulas(entity, tipo){
   if(tipo === "confeti"){
 
     p.setAttribute("particle-system",
-      "particleCount:250; color:#00ff00,#ffffff,#ff0000; velocityValue:0 1 0; velocitySpread:1 1 1; size:0.3; maxAge:2");
+      "particleCount:250; color:#00ff00,#ffffff,#ff0000; velocityValue:0 1 0; velocitySpread:1 1 1; size:0.3; maxAge:2;  startEvents:startAnim; pauseEvents:stopAnim");
 
   }
 
   if(tipo === "polvo"){
 
     p.setAttribute("particle-system",
-      "particleCount:120; color:#bfa27a; velocityValue:0 0.2 0; size:0.4");
+      "particleCount:120; color:#bfa27a; velocityValue:0 0.2 0; size:0.4; startEvents:startAnim; pauseEvents:stopAnim");
 
     p.setAttribute("position","0 0 0");
 
@@ -219,35 +216,35 @@ function crearParticulas(entity, tipo){
   if(tipo === "petalos"){
 
     p.setAttribute("particle-system",
-      "particleCount:150; color:#ffb7c5,#ffc0cb; velocityValue:0 0.2 0; velocitySpread:1 0 1; size:0.4");
+      "particleCount:150; color:#ffb7c5,#ffc0cb; velocityValue:0 0.2 0; velocitySpread:1 0 1; size:0.4;  startEvents:startAnim; pauseEvents:stopAnim");
 
   }
 
   if(tipo === "hojas"){
 
     p.setAttribute("particle-system",
-      "particleCount:120; color:#4CAF50,#8BC34A; velocityValue:0 0.15 0");
+      "particleCount:120; color:#4CAF50,#8BC34A; velocityValue:0 0.15 0;  startEvents:startAnim; pauseEvents:stopAnim");
 
   }
 
   if(tipo === "humo"){
 
     p.setAttribute("particle-system",
-      "particleCount:90; color:#dddddd; velocityValue:0 0.5 0; size:0.5");
+      "particleCount:90; color:#dddddd; velocityValue:0 0.5 0; size:0.5;  startEvents:startAnim; pauseEvents:stopAnim");
 
   }
 
   if(tipo === "luciernagas"){
 
     p.setAttribute("particle-system",
-      "particleCount:80; color:#ffff99,#fff176; size:0.2");
+      "particleCount:80; color:#ffff99,#fff176; size:0.2; startEvents:startAnim; pauseEvents:stopAnim");
 
   }
 
   if(tipo === "musica"){
 
     p.setAttribute("particle-system",
-      "particleCount:100; color:#ffcc00,#ffffff; velocityValue:0 0.3 0");
+      "particleCount:100; color:#ffcc00,#ffffff; velocityValue:0 0.3 0; startEvents:startAnim; pauseEvents:stopAnim");
 
   }
 
@@ -260,34 +257,34 @@ function crearParticulas(entity, tipo){
 const btn = document.getElementById("play-btn");
 let playing = false;
 
-btn.addEventListener("click", ()=>{
+btn.addEventListener("click", () => {
 
   const modelo = document.querySelector("#modelo-activo");
+  if (!modelo) return;
+
   const rotador = modelo.parentElement;
 
-  console.log(modelo);
-  if(!modelo) return;
+  if (!playing) {
 
-  const anim = rotador.components.animation;
-  const mixer = modelo.components["animation-mixer"];
+    rotador.emit("startAnim");
+    modelo.emit("startAnim");
 
-  console.log(anim);
-  console.log(mixer);
-  if(!playing){
+    if (modelo.components["animation-mixer"]) {
+      modelo.setAttribute("animation-mixer", "timeScale: 1");
+    }
 
-      if(anim) anim.play();
+    btn.innerText = "⏸";
 
-      if(mixer) mixer.playAction();
+  } else {
 
-      btn.innerText="⏸";
+    rotador.emit("stopAnim");
+    modelo.emit("stopAnim");
 
-  }else{
+    if (modelo.components["animation-mixer"]) {
+      modelo.setAttribute("animation-mixer", "timeScale: 0");
+    }
 
-      if(anim) anim.pause();
-
-      if(mixer) mixer.stopAction();
-
-      btn.innerText="▶";
+    btn.innerText = "▶";
 
   }
 

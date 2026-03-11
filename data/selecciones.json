@@ -147,7 +147,7 @@
   "corea_del_sur": {
     "nombre": "Corea del sur",
     "modelo":"../assets/modelos/moranhwa.glb",
-    "animacion":"ArmatureAction.001",
+    "animacion":"Armature|Armature|Idle_01",
     "scale":"2.2 2.2 2.2",
     "particulas":"luciernagas",
     "descripcion": "La Selección de fútbol de Corea del Sur es una de las potencias asiáticas y miembro destacado de la AFC. Es reconocida por su disciplina, velocidad y constancia en Copas del Mundo, siendo una de las selecciones asiáticas con más participaciones en la historia del torneo.",
