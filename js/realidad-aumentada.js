@@ -269,7 +269,7 @@ btn.addEventListener("click", () => {
   if (!modelo) return;
 
   const rotador = modelo.parentElement;
-  const particulas = document.querySelector(".particulas");
+ /* const particulas = document.querySelector(".particulas");*/
 
   if (!playing) {
 
@@ -280,9 +280,9 @@ btn.addEventListener("click", () => {
       modelo.setAttribute("animation-mixer", "timeScale: 1");
     }
 
-    if (particulas) {
+    /*if (particulas) {
       particulas.setAttribute("particle-system", "enabled: true");
-    }
+    }*/
 
     btn.innerText = "⏸";
 
@@ -295,9 +295,9 @@ btn.addEventListener("click", () => {
       modelo.setAttribute("animation-mixer", "timeScale: 0");
     }
 
-    if (particulas) {
+    /*if (particulas) {
       particulas.setAttribute("particle-system", "enabled: false");
-    }
+    }*/
 
     btn.innerText = "▶";
   }
