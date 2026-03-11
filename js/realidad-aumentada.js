@@ -15,98 +15,106 @@ const closeBtn = document.getElementById('close-card');
 closeBtn.addEventListener('click', () => card.classList.add('hidden'));
 
 //boton de ayuda
-document.getElementById("help-btn").addEventListener("click", function() {
-    Swal.fire({
-        title: "¿Cómo usar MexScan?",
-        html: `
+document.getElementById("help-btn").addEventListener("click", function () {
+  Swal.fire({
+    title: "¿Cómo usar MexScan?",
+    html: `
             <p>1. Escanea un escudo.</p>
             <p>2. Consulta la información del país.</p>
             <p>3. Prueba la sección de trivia para aprender más.</p>
         `,
-        icon: "info",
-        confirmButtonText: "Entendido",
-        confirmButtonColor: "#7e3bed"
-    });
+    icon: "info",
+    confirmButtonText: "Entendido",
+    confirmButtonColor: "#7e3bed"
+  });
 });
 
 
 //Detectar targets y mostrar informacion
 document.querySelectorAll("[mindar-image-target]").forEach((entity) => {
 
-    entity.addEventListener("targetFound", () => {
+  entity.addEventListener("targetFound", () => {
     const clave = entity.dataset.clave;
     seleccionActual = clave;
 
     if (datos[clave]) {
-        mostrarInfo(clave);
-        crearExperiencia(entity, clave);
-        document.getElementById("play-btn").classList.remove("hidden");
+      mostrarInfo(clave);
+      crearExperiencia(entity, clave);
+      document.getElementById("play-btn").classList.remove("hidden");
     }
 
-    });
+  });
 
-    entity.addEventListener("targetLost", () => {
+  entity.addEventListener("targetLost", () => {
 
-        const container = entity.querySelector(".modelo-container");
-        container.innerHTML = "";
+    /*const container = entity.querySelector(".modelo-container");
+    container.innerHTML = "";
 
-        const particulas = entity.querySelector(".particulas");
+    const particulas = entity.querySelector(".particulas");
 
-        if(particulas){
-            particulas.remove();
-        }
+    if(particulas){
+        particulas.remove();
+    }*/
 
-        document.getElementById("info-card").classList.add("hidden");
-        document.getElementById("play-btn").classList.add("hidden");
-    });
+    const container = entity.querySelector(".modelo-container");
+
+    if (container) {
+      while (container.firstChild) {
+        container.removeChild(container.firstChild);
+      }
+    }
+
+    document.getElementById("info-card").classList.add("hidden");
+    document.getElementById("play-btn").classList.add("hidden");
+  });
 
 });
 
 //Rellenar info card
 function mostrarInfo(clave) {
 
-    const seleccion = datos[clave];
+  const seleccion = datos[clave];
 
-    document.getElementById("info-card").classList.remove("hidden");
+  document.getElementById("info-card").classList.remove("hidden");
 
-    // Mostrar vista info y ocultar trivia
-    document.getElementById("info-view").classList.remove("hidden");
-    document.getElementById("trivia-view").classList.add("hidden");
+  // Mostrar vista info y ocultar trivia
+  document.getElementById("info-view").classList.remove("hidden");
+  document.getElementById("trivia-view").classList.add("hidden");
 
-    document.getElementById("card-nombre").innerText = seleccion.nombre;
-    document.getElementById("card-descripcion").innerText = seleccion.descripcion;
+  document.getElementById("card-nombre").innerText = seleccion.nombre;
+  document.getElementById("card-descripcion").innerText = seleccion.descripcion;
 
-    const tabla = document.getElementById("tabla-resultados");
-    tabla.innerHTML = "";
+  const tabla = document.getElementById("tabla-resultados");
+  tabla.innerHTML = "";
 
-    seleccion.mejoresResultados.forEach(resultado => {
-        tabla.innerHTML += `
+  seleccion.mejoresResultados.forEach(resultado => {
+    tabla.innerHTML += `
         <tr>
             <td>${resultado.anio}</td>
             <td>${resultado.mundial}</td>
             <td>${resultado.instancia}</td>
         </tr>
         `;
-    });
+  });
 
 }
 
 // Mostrar trivia
 document.getElementById("trivia-btn").addEventListener("click", () => {
-    mostrarTrivia();
+  mostrarTrivia();
 });
 
 function mostrarTrivia() {
 
-    const seleccion = datos[seleccionActual];
-    const trivia = seleccion.trivia;
+  const seleccion = datos[seleccionActual];
+  const trivia = seleccion.trivia;
 
-    document.getElementById("info-view").classList.add("hidden");
-    document.getElementById("trivia-view").classList.remove("hidden");
+  document.getElementById("info-view").classList.add("hidden");
+  document.getElementById("trivia-view").classList.remove("hidden");
 
-    const triviaView = document.getElementById("trivia-view");
+  const triviaView = document.getElementById("trivia-view");
 
-    triviaView.innerHTML = `
+  triviaView.innerHTML = `
         <h2>Trivia: ${trivia.pregunta}</h2>
         ${trivia.opciones.map((opcion, index) => `
         <button class="answer" data-index="${index}">
@@ -116,7 +124,7 @@ function mostrarTrivia() {
     `;
 
 
-    activarEventosTrivia(trivia.correcta);
+  activarEventosTrivia(trivia.correcta);
 }
 
 //respuesta correcta
@@ -151,7 +159,7 @@ function volverAInformacion() {
   mostrarInfo(seleccionActual);
 }
 
-function crearExperiencia(entity, clave){
+function crearExperiencia(entity, clave) {
   const container = entity.querySelector(".modelo-container");
   container.innerHTML = "";
 
@@ -160,29 +168,29 @@ function crearExperiencia(entity, clave){
 
   modelo.setAttribute("src", datos[clave].modelo);
   modelo.setAttribute("scale", "0 0 0"); // Inicia en 0 para el efecto appear
-  modelo.setAttribute("position","0 0 0");
+  modelo.setAttribute("position", "0 0.01 0");
   modelo.id = "modelo-activo";
-  
+
   // Animación de aparición
- modelo.setAttribute("animation__appear", 
+  modelo.setAttribute("animation__appear",
     `property: scale; from: 0 0 0; to: ${escalaFinal}; dur: 1000; easing: easeOutBack`);
 
   // NUEVO: Animación de subir y bajar (Levitar)
-modelo.setAttribute("animation__levitate", 
-"property: position; from: 0 0 0; to: 0 0.2 0; loop: true; dir: alternate; dur: 2000; easing: easeInOutSine; startEvents: startAnim; pauseEvents: stopAnim");
-    
+  modelo.setAttribute("animation__levitate",
+    "property: position; from: 0 0 0; to: 0 0.2 0; loop: true; dir: alternate; dur: 2000; easing: easeInOutSine; startEvents: startAnim; pauseEvents: stopAnim");
+
   // Contenedor de ROTACIÓN
   const rotador = document.createElement("a-entity");
 
-rotador.setAttribute("animation__rotate", 
-"property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear; startEvents: startAnim; pauseEvents: stopAnim");;
+  rotador.setAttribute("animation__rotate",
+    "property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear; startEvents: startAnim; pauseEvents: stopAnim");;
 
   rotador.appendChild(modelo);
   container.appendChild(rotador);
 
-  if(datos[clave].animacion){
-      modelo.setAttribute("animation-mixer", 
-        `clip: ${datos[clave].animacion}; loop: repeat; timeScale: 0`); // Iniciamos en 0 (pausado)
+  if (datos[clave].animacion) {
+    modelo.setAttribute("animation-mixer",
+      `clip: ${datos[clave].animacion}; loop: repeat; timeScale: 0`); // Iniciamos en 0 (pausado)
   }
 
   crearParticulas(entity, datos[clave].particulas);
@@ -190,58 +198,58 @@ rotador.setAttribute("animation__rotate",
 
 // Sistema de particulas
 
-function crearParticulas(entity, tipo){
+function crearParticulas(entity, tipo) {
 
   const p = document.createElement("a-entity");
   p.classList.add("particulas");
 
-  p.setAttribute("position","0 0.5 0");
+  p.setAttribute("position", "0 0.5 0");
 
-  if(tipo === "confeti"){
+  if (tipo === "confeti") {
 
     p.setAttribute("particle-system",
       "particleCount:250; color:#00ff00,#ffffff,#ff0000; velocityValue:0 1 0; velocitySpread:1 1 1; size:0.3; maxAge:2;  startEvents:startAnim; pauseEvents:stopAnim");
 
   }
 
-  if(tipo === "polvo"){
+  if (tipo === "polvo") {
 
     p.setAttribute("particle-system",
       "particleCount:120; color:#bfa27a; velocityValue:0 0.2 0; size:0.4; startEvents:startAnim; pauseEvents:stopAnim");
 
-    p.setAttribute("position","0 0 0");
+    p.setAttribute("position", "0 0 0");
 
   }
 
-  if(tipo === "petalos"){
+  if (tipo === "petalos") {
 
     p.setAttribute("particle-system",
       "particleCount:150; color:#ffb7c5,#ffc0cb; velocityValue:0 0.2 0; velocitySpread:1 0 1; size:0.4;  startEvents:startAnim; pauseEvents:stopAnim");
 
   }
 
-  if(tipo === "hojas"){
+  if (tipo === "hojas") {
 
     p.setAttribute("particle-system",
       "particleCount:120; color:#4CAF50,#8BC34A; velocityValue:0 0.15 0; enabled:false");
 
   }
 
-  if(tipo === "humo"){
+  if (tipo === "humo") {
 
     p.setAttribute("particle-system",
       "particleCount:90; color:#dddddd; velocityValue:0 0.5 0; size:0.5; enabled:false");
 
   }
 
-  if(tipo === "luciernagas"){
+  if (tipo === "luciernagas") {
 
     p.setAttribute("particle-system",
       "particleCount:80; color:#ffff99,#fff176; size:0.2; enabled:false");
 
   }
 
-  if(tipo === "musica"){
+  if (tipo === "musica") {
 
     p.setAttribute("particle-system",
       "particleCount:100; color:#ffcc00,#ffffff; velocityValue:0 0.3 0; enabled:false");
@@ -274,8 +282,8 @@ btn.addEventListener("click", () => {
       modelo.setAttribute("animation-mixer", "timeScale: 1");
     }
 
-    if(particulas){
-      particulas.setAttribute("particle-system","enabled: true");
+    if (particulas) {
+      particulas.setAttribute("particle-system", "enabled: true");
     }
 
     btn.innerText = "⏸";
@@ -289,8 +297,8 @@ btn.addEventListener("click", () => {
       modelo.setAttribute("animation-mixer", "timeScale: 0");
     }
 
-    if(particulas){
-      particulas.setAttribute("particle-system","enabled: false");
+    if (particulas) {
+      particulas.setAttribute("particle-system", "enabled: false");
     }
 
     btn.innerText = "▶";
