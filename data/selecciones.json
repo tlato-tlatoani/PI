@@ -1,6 +1,9 @@
 {
   "mexico": {
     "nombre": "México",
+    "modelo": "../assets/modelos/pinata.glb",
+    "scale":"0.3 0.3 0.3",
+    "particulas":"confeti",
     "descripcion": "La Selección de fútbol de México, conocida como El Tri, es una de las selecciones más importantes de la CONCACAF y una presencia constante en los Mundiales. Destaca por su regularidad en clasificaciones y por haber sido anfitriona en múltiples ocasiones, incluyendo la próxima Copa Mundial de la FIFA 2026.",
 
     "mejoresResultados": [
@@ -34,6 +37,9 @@
 
   "colombia": {
     "nombre": "Colombia",
+    "modelo": "../assets/modelos/cafe.glb",
+    "scale":"0.3 0.3 0.3",
+    "particulas":"humo",
     "descripcion": "La Selección de fútbol de Colombia es una de las selecciones más competitivas de Sudamérica y miembro de la CONMEBOL. Destaca por su estilo técnico y ofensivo, y ha tenido participaciones memorables en Copas del Mundo, especialmente en la década de 2010.",
 
     "mejoresResultados": [
@@ -67,6 +73,9 @@
 
   "uruguay": {
     "nombre": "Uruguay",
+    "modelo":"../assets/modelos/mate.glb",
+    "scale":"0.9 0.9 0.9",
+    "particulas":"hojas",
     "descripcion": "La Selección de fútbol de Uruguay, conocida como La Celeste, es una de las selecciones más históricas del mundo y miembro de la CONMEBOL. Fue campeona en las primeras ediciones de la Copa del Mundo y es reconocida por su tradición, carácter competitivo y legado en el fútbol internacional.",
 
     "mejoresResultados": [
@@ -100,6 +109,10 @@
 
   "sudafrica": {
     "nombre": "Sudáfrica",
+    "modelo":"../assets/modelos/elefante.glb",
+    "animacion":"Stand_01",
+    "scale":"0.3 0.3 0.3",
+    "particulas":"polvo",
     "descripcion": "La Selección de fútbol de Sudáfrica, conocida como Bafana Bafana, representa al país en competiciones internacionales y es miembro de la CAF. Es recordada mundialmente por haber sido anfitriona de la Copa Mundial de la FIFA 2010, el primer Mundial celebrado en el continente africano.",
 
     "mejoresResultados": [
@@ -133,6 +146,10 @@
   
   "corea_del_sur": {
     "nombre": "Corea del sur",
+    "modelo":"../assets/modelos/moranhwa.glb",
+    "animacion":"ArmatureAction.001",
+    "scale":"2.2 2.2 2.2",
+    "particulas":"luciernagas",
     "descripcion": "La Selección de fútbol de Corea del Sur es una de las potencias asiáticas y miembro destacado de la AFC. Es reconocida por su disciplina, velocidad y constancia en Copas del Mundo, siendo una de las selecciones asiáticas con más participaciones en la historia del torneo.",
 
     "mejoresResultados": [
@@ -166,6 +183,9 @@
   
   "espana": {
     "nombre": "España",
+    "modelo":"../assets/modelos/guitarra.glb",
+    "scale":"3.0 3.0 3.0",
+    "particulas":"musica",
     "descripcion": "La Selección de fútbol de España, conocida como La Roja, es una de las selecciones más exitosas de Europa y miembro de la UEFA. Alcanzó su mayor gloria en 2010 al conquistar su primera Copa del Mundo, consolidando una era dorada del fútbol español.",
 
     "mejoresResultados": [
@@ -199,6 +219,9 @@
   
   "japon": {
     "nombre": "Japón",
+    "modelo":"../assets/modelos/cherry-tree.glb",
+    "scale":"0.8 0.8 0.8",
+    "particulas":"petalos",
     "descripcion": "La Selección de fútbol de Japón, conocida como Samurai Blue, es una de las selecciones más fuertes de Asia y miembro de la AFC. Desde su primera participación en 1998, se ha convertido en un equipo constante en Copas del Mundo y ha destacado por su disciplina táctica y juego dinámico.",
 
     "mejoresResultados": [
@@ -232,6 +255,9 @@
   
   "uzbekistan": {
     "nombre": "Uzbekistán",
+    "modelo":"../assets/modelos/pan.glb",
+    "scale":"0.9 0.9 0.9",
+    "particulas":"humo",
     "descripcion": "La Selección de fútbol de Uzbekistán representa al país en competiciones internacionales y es miembro de la AFC. Desde su independencia en 1991, se ha consolidado como una selección competitiva en Asia Central, aunque aún busca clasificar por primera vez a una Copa del Mundo.",
 
     "mejoresResultados": [
@@ -250,6 +276,10 @@
   
   "tunez": {
     "nombre": "Túnez",
+    "modelo":"../assets/modelos/camello.glb",
+    "animacion":"Armature | Idle_01",
+    "scale":"0.8 0.8 0.8",
+    "particulas":"polvo",
     "descripcion": "La Selección de fútbol de Túnez, conocida como Las Águilas de Cartago, es una de las selecciones más constantes del norte de África y miembro de la CAF. Ha participado en varias Copas del Mundo y es reconocida por su disciplina táctica y competitividad en torneos internacionales.",
 
     "mejoresResultados": [

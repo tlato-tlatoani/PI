@@ -35,15 +35,27 @@ document.querySelectorAll("[mindar-image-target]").forEach((entity) => {
 
     entity.addEventListener("targetFound", () => {
     const clave = entity.dataset.clave;
+    seleccionActual = clave;
 
     if (datos[clave]) {
         mostrarInfo(clave);
+        crearExperiencia(entity, clave);
         document.getElementById("play-btn").classList.remove("hidden");
     }
 
     });
 
     entity.addEventListener("targetLost", () => {
+
+        const container = entity.querySelector(".modelo-container");
+        container.innerHTML = "";
+
+        const particulas = entity.querySelector(".particulas");
+
+        if(particulas){
+            particulas.remove();
+        }
+
         document.getElementById("info-card").classList.add("hidden");
         document.getElementById("play-btn").classList.add("hidden");
     });
@@ -53,7 +65,6 @@ document.querySelectorAll("[mindar-image-target]").forEach((entity) => {
 //Rellenar info card
 function mostrarInfo(clave) {
 
-    seleccionActual = clave;
     const seleccion = datos[clave];
 
     document.getElementById("info-card").classList.remove("hidden");
@@ -80,8 +91,7 @@ function mostrarInfo(clave) {
 
 }
 
-//mostrar trivia
-
+// Mostrar trivia
 document.getElementById("trivia-btn").addEventListener("click", () => {
     mostrarTrivia();
 });
@@ -110,7 +120,6 @@ function mostrarTrivia() {
 }
 
 //respuesta correcta
-
 function activarEventosTrivia(indiceCorrecto) {
 
   document.querySelectorAll(".answer").forEach(btn => {
@@ -141,3 +150,147 @@ function activarEventosTrivia(indiceCorrecto) {
 function volverAInformacion() {
   mostrarInfo(seleccionActual);
 }
+
+// Cargar modelo
+function crearExperiencia(entity, clave){
+
+  const container = entity.querySelector(".modelo-container");
+  container.innerHTML = "";
+
+  const modelo = document.createElement("a-gltf-model");
+
+  modelo.setAttribute("src", datos[clave].modelo);
+  modelo.setAttribute("scale", datos[clave].scale || "0.3 0.3 0.3");
+  modelo.setAttribute("position","0 0 0");
+  modelo.id = "modelo-activo";
+  modelo.setAttribute(
+  "animation__appear",
+  `property: scale; from:0 0 0; to:${datos[clave].scale}; dur:1000; easing:easeOutBack`
+  );
+
+  // ROTACION PARA TODOS
+  const rotador = document.createElement("a-entity");
+
+  rotador.setAttribute(
+    "animation",
+    "property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear; autoplay: false"
+  );
+
+  rotador.appendChild(modelo);
+  container.appendChild(rotador);
+
+  // ANIMACION GLB SOLO SI EXISTE
+  if(datos[clave].animacion){
+      modelo.setAttribute(
+        "animation-mixer",
+        `clip: ${datos[clave].animacion}; loop: repeat; timeScale: 1`
+      );
+  }
+
+  crearParticulas(entity, datos[clave].particulas);
+
+}
+
+// Sistema de particulas
+
+function crearParticulas(entity, tipo){
+
+  const p = document.createElement("a-entity");
+  p.classList.add("particulas");
+
+  p.setAttribute("position","0 0.5 0");
+
+  if(tipo === "confeti"){
+
+    p.setAttribute("particle-system",
+      "particleCount:250; color:#00ff00,#ffffff,#ff0000; velocityValue:0 1 0; velocitySpread:1 1 1; size:0.3; maxAge:2");
+
+  }
+
+  if(tipo === "polvo"){
+
+    p.setAttribute("particle-system",
+      "particleCount:120; color:#bfa27a; velocityValue:0 0.2 0; size:0.4");
+
+    p.setAttribute("position","0 0 0");
+
+  }
+
+  if(tipo === "petalos"){
+
+    p.setAttribute("particle-system",
+      "particleCount:150; color:#ffb7c5,#ffc0cb; velocityValue:0 0.2 0; velocitySpread:1 0 1; size:0.4");
+
+  }
+
+  if(tipo === "hojas"){
+
+    p.setAttribute("particle-system",
+      "particleCount:120; color:#4CAF50,#8BC34A; velocityValue:0 0.15 0");
+
+  }
+
+  if(tipo === "humo"){
+
+    p.setAttribute("particle-system",
+      "particleCount:90; color:#dddddd; velocityValue:0 0.5 0; size:0.5");
+
+  }
+
+  if(tipo === "luciernagas"){
+
+    p.setAttribute("particle-system",
+      "particleCount:80; color:#ffff99,#fff176; size:0.2");
+
+  }
+
+  if(tipo === "musica"){
+
+    p.setAttribute("particle-system",
+      "particleCount:100; color:#ffcc00,#ffffff; velocityValue:0 0.3 0");
+
+  }
+
+  entity.appendChild(p);
+
+}
+
+// Boton de play-stop
+
+const btn = document.getElementById("play-btn");
+let playing = false;
+
+btn.addEventListener("click", ()=>{
+
+  const modelo = document.querySelector("#modelo-activo");
+  const rotador = modelo.parentElement;
+
+  console.log(modelo);
+  if(!modelo) return;
+
+  const anim = rotador.components.animation;
+  const mixer = modelo.components["animation-mixer"];
+
+  console.log(anim);
+  console.log(mixer);
+  if(!playing){
+
+      if(anim) anim.play();
+
+      if(mixer) mixer.playAction();
+
+      btn.innerText="⏸";
+
+  }else{
+
+      if(anim) anim.pause();
+
+      if(mixer) mixer.stopAction();
+
+      btn.innerText="▶";
+
+  }
+
+  playing = !playing;
+
+});
