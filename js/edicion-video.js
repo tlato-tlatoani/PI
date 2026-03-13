@@ -1,14 +1,14 @@
 
 const videos = [
-  "videos/mexico.mp4",
-  "videos/colombia.mp4",
-  "videos/corea.mp4",
-  "videos/uruguay.mp4",
-  "videos/tunez.mp4",
-  "videos/uzbekistan.mp4",
-  "videos/japon.mp4",
-  "videos/espana.mp4",
-  "videos/sudafrica.mp4"
+  "assets/videos/mexico.mp4",
+  "assets/videos/colombia.mp4",
+  "assets/videos/corea.mp4",
+  "assets/videos/uruguay.mp4",
+  "assets/videos/tunez.mp4",
+  "assets/videos/uzbekistan.mp4",
+  "assets/videos/japon.mp4",
+  "assets/videos/espana.mp4",
+  "assets/videos/sudafrica.mp4"
 ];
 
 let currentIndex = 0;
