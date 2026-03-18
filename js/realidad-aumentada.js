@@ -4,7 +4,7 @@
 //  2 → CSS recortadas dentro del frame de la cámara
 //  3 → Partículas 3D con Three.js dentro de la escena A-Frame
 // ════════════════════════════════════════════════════════════════════
-const PARTICLE_FLAG = 3;
+const PARTICLE_FLAG = 2;
 
 // ════════════════════════════════════════════════════════════════════
 //  REGISTRO ÚNICO DEL COMPONENTE TICK (Flag 3)
