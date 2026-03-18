@@ -48,14 +48,11 @@ document.querySelectorAll("[mindar-image-target]").forEach((entity) => {
 
   entity.addEventListener("targetLost", () => {
 
-    /*const container = entity.querySelector(".modelo-container");
-    container.innerHTML = "";
-
     const particulas = entity.querySelector(".particulas");
 
     if(particulas){
         particulas.remove();
-    }*/
+    }
 
     const container = entity.querySelector(".modelo-container");
 
@@ -173,7 +170,7 @@ function crearExperiencia(entity, clave) {
   modelo.setAttribute("src", datos[clave].modelo);
   modelo.setAttribute("scale", "0 0 0"); // Inicia en 0 para el efecto appear
   modelo.setAttribute("position", "0 0.01 0");
-  modelo.setAttribute("shadow","cast:false; receive:false");
+  modelo.setAttribute("shadow", "cast:false; receive:false");
   modelo.id = "modelo-activo";
 
   modelo.setAttribute("animation__appear",
@@ -194,72 +191,53 @@ function crearExperiencia(entity, clave) {
     modelo.setAttribute("animation-mixer",
       `clip:${datos[clave].animacion}; loop: repeat; timeScale: 0`);
   }
-  /*crearParticulas(entity, datos[clave].particulas);*/
+  crearParticulas(entity, datos[clave].particulas);
 }
 
 // Sistema de particulas
-/*function crearParticulas(entity, tipo) {
+function crearParticulas(entity, tipo) {
 
   const p = document.createElement("a-entity");
   p.classList.add("particulas");
 
-  p.setAttribute("position", "0 0.5 0");
+  p.setAttribute("position", "0 0.3 0");
+
+  let config = "";
 
   if (tipo === "confeti") {
-
-    p.setAttribute("particle-system",
-      "particleCount:250; color:#00ff00,#ffffff,#ff0000; velocityValue:0 1 0; velocitySpread:1 1 1; size:0.3; maxAge:2;  startEvents:startAnim; pauseEvents:stopAnim");
-
+    config = "particleCount:250; color:#00ff00,#ffffff,#ff0000; velocityValue:0 1 0; velocitySpread:1 1 1; size:0.3; maxAge:2;";
   }
 
   if (tipo === "polvo") {
-
-    p.setAttribute("particle-system",
-      "particleCount:120; color:#bfa27a; velocityValue:0 0.2 0; size:0.4; startEvents:startAnim; pauseEvents:stopAnim");
-
+    config = "particleCount:120; color:#bfa27a; velocityValue:0 0.2 0; size:0.4;";
     p.setAttribute("position", "0 0 0");
-
   }
 
   if (tipo === "petalos") {
-
-    p.setAttribute("particle-system",
-      "particleCount:150; color:#ffb7c5,#ffc0cb; velocityValue:0 0.2 0; velocitySpread:1 0 1; size:0.4;  startEvents:startAnim; pauseEvents:stopAnim");
-
+    config = "particleCount:150; color:#ffb7c5,#ffc0cb; velocityValue:0 0.2 0; velocitySpread:1 0 1; size:0.4;";
   }
 
   if (tipo === "hojas") {
-
-    p.setAttribute("particle-system",
-      "particleCount:120; color:#4CAF50,#8BC34A; velocityValue:0 0.15 0; enabled:false");
-
+    config = "particleCount:120; color:#4CAF50,#8BC34A; velocityValue:0 0.15 0;";
   }
 
   if (tipo === "humo") {
-
-    p.setAttribute("particle-system",
-      "particleCount:90; color:#dddddd; velocityValue:0 0.5 0; size:0.5; enabled:false");
-
+    config = "particleCount:90; color:#dddddd; velocityValue:0 0.5 0; size:0.5;";
   }
 
   if (tipo === "luciernagas") {
-
-    p.setAttribute("particle-system",
-      "particleCount:80; color:#ffff99,#fff176; size:0.2; enabled:false");
-
+    config = "particleCount:80; color:#ffff99,#fff176; size:0.2;";
   }
 
   if (tipo === "musica") {
-
-    p.setAttribute("particle-system",
-      "particleCount:100; color:#ffcc00,#ffffff; velocityValue:0 0.3 0; enabled:false");
-
+    config = "particleCount:100; color:#ffcc00,#ffffff; velocityValue:0 0.3 0;";
   }
 
+
+  p.setAttribute("particle-system", config + " enabled:false");
+
   entity.appendChild(p);
-
-}*/
-
+}
 
 
 const btn = document.getElementById("play-btn");
@@ -270,9 +248,41 @@ btn.addEventListener("click", () => {
   if (!modelo) return;
 
   const rotador = modelo.parentElement;
- /* const particulas = document.querySelector(".particulas");*/
+  const particulas = document.querySelector(".particulas");
+
 
   if (!playing) {
+
+  rotador.emit("startAnim");
+  modelo.emit("startAnim");
+
+  if (modelo.components["animation-mixer"]) {
+    modelo.setAttribute("animation-mixer", "timeScale", 1);
+  }
+
+  if (particulas) {
+    particulas.setAttribute("particle-system", "enabled", true);
+  }
+
+  btn.innerText = "⏸";
+
+} else {
+
+  rotador.emit("stopAnim");
+  modelo.emit("stopAnim");
+
+  if (modelo.components["animation-mixer"]) {
+    modelo.setAttribute("animation-mixer", "timeScale", 0);
+  }
+
+  if (particulas) {
+    particulas.setAttribute("particle-system", "enabled", false);
+  }
+
+  btn.innerText = "▶";
+}
+
+ /* if (!playing) {
 
     rotador.emit("startAnim");
     modelo.emit("startAnim");
@@ -283,7 +293,7 @@ btn.addEventListener("click", () => {
 
     /*if (particulas) {
       particulas.setAttribute("particle-system", "enabled: true");
-    }*/
+    }
 
     btn.innerText = "⏸";
 
@@ -298,10 +308,10 @@ btn.addEventListener("click", () => {
 
     /*if (particulas) {
       particulas.setAttribute("particle-system", "enabled: false");
-    }*/
+    }
 
     btn.innerText = "▶";
-  }
+  }*/
 
   playing = !playing;
 });
