@@ -233,9 +233,9 @@ function crearParticulas(entity, tipo) {
     config = "particleCount:100; color:#ffcc00,#ffffff; velocityValue:0 0.3 0;";
   }
 
-
-  p.setAttribute("particle-system", config);
-  p.setAttribute("particle-system", "enabled", false);
+  p.setAttribute("particle-system", config + " enabled: false;");
+  // p.setAttribute("particle-system", config);
+  // p.setAttribute("particle-system", "enabled", false);
 
   entity.appendChild(p);
 }
