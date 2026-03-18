@@ -109,9 +109,9 @@
 
   "sudafrica": {
     "nombre": "Sudáfrica",
-    "modelo":"../assets/modelos/elefante.glb",
+    "modelo":"../assets/modelos/elephant.glb",
     "animacion":"Stand_01",
-    "scale":"0.3 0.3 0.3",
+    "scale":"16.0 16.0 16.0",
     "particulas":"polvo",
     "descripcion": "La Selección de fútbol de Sudáfrica, conocida como Bafana Bafana, representa al país en competiciones internacionales y es miembro de la CAF. Es recordada mundialmente por haber sido anfitriona de la Copa Mundial de la FIFA 2010, el primer Mundial celebrado en el continente africano.",
 
@@ -147,7 +147,7 @@
   "corea_del_sur": {
     "nombre": "Corea del sur",
     "modelo":"../assets/modelos/moranhwa.glb",
-    "animacion":"Armature|Armature|Idle_01",
+    "animacion":"ArmatureAction.001",
     "scale":"2.2 2.2 2.2",
     "particulas":"luciernagas",
     "descripcion": "La Selección de fútbol de Corea del Sur es una de las potencias asiáticas y miembro destacado de la AFC. Es reconocida por su disciplina, velocidad y constancia en Copas del Mundo, siendo una de las selecciones asiáticas con más participaciones en la historia del torneo.",
@@ -184,7 +184,7 @@
   "espana": {
     "nombre": "España",
     "modelo":"../assets/modelos/guitarra.glb",
-    "scale":"3.0 3.0 3.0",
+    "scale":"5.0 5.0 5.0",
     "particulas":"musica",
     "descripcion": "La Selección de fútbol de España, conocida como La Roja, es una de las selecciones más exitosas de Europa y miembro de la UEFA. Alcanzó su mayor gloria en 2010 al conquistar su primera Copa del Mundo, consolidando una era dorada del fútbol español.",
 
@@ -277,8 +277,8 @@
   "tunez": {
     "nombre": "Túnez",
     "modelo":"../assets/modelos/camello.glb",
-    "animacion":"Armature | Idle_01",
-    "scale":"0.8 0.8 0.8",
+    "animacion":"Idle_01",
+    "scale":"0.7 0.7 0.7",
     "particulas":"polvo",
     "descripcion": "La Selección de fútbol de Túnez, conocida como Las Águilas de Cartago, es una de las selecciones más constantes del norte de África y miembro de la CAF. Ha participado en varias Copas del Mundo y es reconocida por su disciplina táctica y competitividad en torneos internacionales.",
 
