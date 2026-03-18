@@ -6,6 +6,7 @@
 let PARTICLE_CLIP = false;
 let PARTICLE_TYPE = "auto";
 
+
 // ───────────────────────────────────────────────────────────────────────
 let seleccionActual   = null;
 let datos             = {};
