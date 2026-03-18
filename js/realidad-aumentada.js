@@ -1,84 +1,74 @@
-// ════════════════════════════════════════════════════════════════════
-//  FLAG DE MODO DE PARTÍCULAS
-//  1 → CSS sobre toda la pantalla
-//  2 → CSS recortadas dentro del frame de la cámara
-//  3 → Partículas 3D con Three.js dentro de la escena A-Frame
-// ════════════════════════════════════════════════════════════════════
-const PARTICLE_FLAG = 2;
+// ═══════════════════════════════════════════════════════════════════════
+//  CONFIGURACIÓN — cambia estos dos valores para personalizar
+// ═══════════════════════════════════════════════════════════════════════
+//  PARTICLE_FLAG:
+//    1 → CSS sobre toda la pantalla
+//    2 → CSS recortadas al frame de la cámara
+//    3 → Partículas 3D con Three.js (sin imports extra, usa AFRAME.THREE)
+//
+//  PARTICLE_TYPE:
+//    "auto"      → usa el tipo definido en el JSON de cada país
+//    "confeti"   → siempre confeti (rojo, verde, blanco, dorado…)
+// ═══════════════════════════════════════════════════════════════════════
+let PARTICLE_FLAG = 3;
+let PARTICLE_TYPE = "auto";
 
-// ════════════════════════════════════════════════════════════════════
-//  REGISTRO ÚNICO DEL COMPONENTE TICK (Flag 3)
-//  Debe estar aquí, en el top-level, para que A-Frame solo lo vea UNA vez.
-//  La referencia al sistema activo se guarda en window.__confeti3dRef
-// ════════════════════════════════════════════════════════════════════
-AFRAME.registerComponent("confeti3d-tick", {
-  tick() {
-    const ref = window.__confeti3dRef;
-    if (!ref || !ref.active) return;
-
-    const { geometry, velocities, phases, COUNT } = ref;
-    const pos  = geometry.attributes.position;
-    const YMIN = -1.0;
-    const YMAX =  3.5;
-
-    for (let i = 0; i < COUNT; i++) {
-      pos.array[i * 3]     += velocities[i].x;
-      pos.array[i * 3 + 1] += velocities[i].y;
-      pos.array[i * 3 + 2] += velocities[i].z;
-
-      phases[i] += 0.04;
-      pos.array[i * 3] += Math.sin(phases[i]) * 0.004;
-
-      if (pos.array[i * 3 + 1] < YMIN) {
-        pos.array[i * 3]     = (Math.random() - 0.5) * 4;
-        pos.array[i * 3 + 1] = YMAX;
-        pos.array[i * 3 + 2] = (Math.random() - 0.5) * 4;
-      }
-    }
-    pos.needsUpdate = true;
-  }
-});
-
-// ─────────────────────────────────────────────────────────────────────────────
-let seleccionActual = null;
-let datos           = {};
-let playing         = false;
-
-// Flag 1 & 2
+// ───────────────────────────────────────────────────────────────────────
+let seleccionActual   = null;
+let datos             = {};
+let playing           = false;
 let confettiInterval  = null;
 let confettiParticles = [];
 
-// ─── Colores por tipo ─────────────────────────────────────────────────────────
-const COLORES_CONFETI = {
-  confeti:     ["#ff0000", "#00c800", "#ffffff", "#ffd700", "#ff69b4", "#00bfff"],
-  polvo:       ["#bfa27a", "#d4b896", "#c9a87c"],
-  petalos:     ["#ffb7c5", "#ffc0cb", "#ff91a4", "#ffd1dc"],
-  hojas:       ["#4CAF50", "#8BC34A", "#66BB6A", "#33691E"],
-  humo:        ["#cccccc", "#dddddd", "#bbbbbb"],
-  luciernagas: ["#ffff99", "#fff176", "#ffffcc"],
-  musica:      ["#ffcc00", "#ffffff", "#ff9900", "#ffee44"],
+const COLORES = {
+  confeti: ["#ff0000","#00c800","#ffffff","#ffd700","#ff69b4","#00bfff"],
+  auto:    []   // se resuelve en tiempo de ejecución
 };
 
-const TIPOS_LABEL = {
-  confeti:     "🎊 Confeti",
-  petalos:     "🌸 Pétalos",
-  hojas:       "🍃 Hojas",
-  polvo:       "✨ Polvo",
-  humo:        "💨 Humo",
-  luciernagas: "🌟 Luciérnagas",
-  musica:      "🎵 Música",
-};
+// ───────────────────────────────────────────────────────────────────────
+//  REGISTRO DEL COMPONENTE TICK (Three.js)
+//  Se hace dentro de window.onload para garantizar que AFRAME ya existe.
+// ───────────────────────────────────────────────────────────────────────
+window.addEventListener("load", () => {
 
-// ─── Tipo de partícula seleccionado por el usuario ────────────────────────────
-// null = usar el definido en el JSON del país; si el usuario elige, se override
-let tipoParticula = null;
+  // Evitar doble registro si el script se recarga (HMR, etc.)
+  if (AFRAME.components["confeti3d-tick"]) return;
 
-// ─── Carga de datos ───────────────────────────────────────────────────────────
+  AFRAME.registerComponent("confeti3d-tick", {
+    tick() {
+      const ref = window.__confeti3dRef;
+      if (!ref || !ref.active) return;
+
+      const { geometry, velocities, phases, COUNT } = ref;
+      const pos  = geometry.attributes.position;
+
+      for (let i = 0; i < COUNT; i++) {
+        pos.array[i*3]   += velocities[i].x;
+        pos.array[i*3+1] += velocities[i].y;
+        pos.array[i*3+2] += velocities[i].z;
+        phases[i] += 0.04;
+        pos.array[i*3] += Math.sin(phases[i]) * 0.004;
+        if (pos.array[i*3+1] < -1.0) {
+          pos.array[i*3]   = (Math.random()-.5)*4;
+          pos.array[i*3+1] = 3.5;
+          pos.array[i*3+2] = (Math.random()-.5)*4;
+        }
+      }
+      pos.needsUpdate = true;
+    }
+  });
+});
+
+// ───────────────────────────────────────────────────────────────────────
+//  CARGA DE DATOS
+// ───────────────────────────────────────────────────────────────────────
 fetch("data/selecciones.json")
   .then(r => r.json())
   .then(json => { datos = json; console.log("Datos cargados"); });
 
-// ─── UI general ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────────
+//  UI GENERAL
+// ───────────────────────────────────────────────────────────────────────
 document.getElementById("close-card")
   .addEventListener("click", () =>
     document.getElementById("info-card").classList.add("hidden"));
@@ -95,134 +85,179 @@ document.getElementById("help-btn").addEventListener("click", () => {
   });
 });
 
-// ─────────────────────────────────────────────────────────────────────────────
-//  SELECTOR DE TIPO DE PARTÍCULAS
-//  Aparece flotando junto al botón de play cuando se detecta un target
-// ─────────────────────────────────────────────────────────────────────────────
-function crearSelectorParticulas() {
-  if (document.getElementById("particle-selector")) return;
+// ───────────────────────────────────────────────────────────────────────
+//  SELECTOR FLOTANTE  (flag + tipo de partícula)
+// ───────────────────────────────────────────────────────────────────────
+function inyectarCSS(id, css) {
+  if (document.getElementById(id)) return;
+  const s = document.createElement("style");
+  s.id = id; s.textContent = css;
+  document.head.appendChild(s);
+}
 
-  // Inyectar estilos del selector
-  const style = document.createElement("style");
-  style.textContent = `
-    #particle-selector-wrap {
+function crearSelectorUI() {
+  if (document.getElementById("ps-wrap")) return;
+
+  inyectarCSS("ps-styles", `
+    #ps-wrap {
       position: fixed;
       bottom: 80px;
-      right: 16px;
+      right: 14px;
       z-index: 10000;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 6px;
-    }
-    #particle-toggle-btn {
-      background: rgba(30,30,40,0.85);
-      color: #fff;
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 20px;
-      padding: 6px 14px;
-      font-size: 13px;
-      cursor: pointer;
-      backdrop-filter: blur(6px);
-      white-space: nowrap;
-    }
-    #particle-selector {
-      background: rgba(20,20,30,0.9);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 12px;
-      overflow: hidden;
-      backdrop-filter: blur(8px);
       display: none;
       flex-direction: column;
-      min-width: 155px;
+      align-items: flex-end;
+      gap: 8px;
+      font-family: inherit;
     }
-    #particle-selector.open { display: flex; }
-    .particle-opt {
-      background: none;
+    #ps-toggle {
+      background: #7e3bed;
+      color: #fff;
       border: none;
-      color: #ddd;
-      padding: 9px 16px;
-      text-align: left;
+      border-radius: 999px;
+      padding: 8px 16px;
       font-size: 13px;
+      font-weight: 600;
       cursor: pointer;
-      transition: background 0.15s;
-      white-space: nowrap;
+      box-shadow: 0 2px 12px rgba(126,59,237,.45);
+      letter-spacing: .03em;
     }
-    .particle-opt:hover    { background: rgba(255,255,255,0.1); }
-    .particle-opt.selected { background: rgba(126,59,237,0.45); color: #fff; }
-  `;
-  document.head.appendChild(style);
+    #ps-toggle:hover { background: #6a2fd4; }
 
-  // Wrapper
+    #ps-panel {
+      background: rgba(18,12,32,0.96);
+      border: 1px solid rgba(126,59,237,.35);
+      border-radius: 14px;
+      padding: 12px;
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      min-width: 190px;
+      box-shadow: 0 4px 24px rgba(0,0,0,.5);
+    }
+    #ps-panel.open { display: flex; }
+
+    .ps-label {
+      color: rgba(255,255,255,.45);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .ps-row {
+      display: flex;
+      gap: 6px;
+    }
+
+    .ps-btn {
+      flex: 1;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 8px;
+      color: #ccc;
+      font-size: 12px;
+      padding: 6px 4px;
+      cursor: pointer;
+      transition: background .15s, border-color .15s, color .15s;
+      text-align: center;
+    }
+    .ps-btn:hover { background: rgba(126,59,237,.25); }
+    .ps-btn.active {
+      background: rgba(126,59,237,.5);
+      border-color: #7e3bed;
+      color: #fff;
+      font-weight: 600;
+    }
+  `);
+
   const wrap = document.createElement("div");
-  wrap.id = "particle-selector-wrap";
+  wrap.id = "ps-wrap";
 
-  // Menú de opciones
-  const menu = document.createElement("div");
-  menu.id = "particle-selector";
+  // ── Panel ──
+  const panel = document.createElement("div");
+  panel.id = "ps-panel";
 
-  // Opción "Auto" (usa el del JSON)
-  const autoOpt = document.createElement("button");
-  autoOpt.className = "particle-opt selected";
-  autoOpt.dataset.tipo = "";
-  autoOpt.textContent = "🔀 Auto (país)";
-  menu.appendChild(autoOpt);
+  // Sección: Modo de render
+  const lbl1 = document.createElement("div");
+  lbl1.className = "ps-label";
+  lbl1.textContent = "Modo de render";
 
-  Object.entries(TIPOS_LABEL).forEach(([tipo, label]) => {
-    const btn = document.createElement("button");
-    btn.className = "particle-opt";
-    btn.dataset.tipo = tipo;
-    btn.textContent = label;
-    menu.appendChild(btn);
+  const rowFlag = document.createElement("div");
+  rowFlag.className = "ps-row";
+
+  [["1","CSS global"],["2","CSS cámara"],["3","Three.js 3D"]].forEach(([val, txt]) => {
+    const b = document.createElement("button");
+    b.className = "ps-btn" + (PARTICLE_FLAG === +val ? " active" : "");
+    b.dataset.flag = val;
+    b.innerHTML = `<strong>${val}</strong><br><span style="font-size:10px">${txt}</span>`;
+    b.addEventListener("click", () => {
+      PARTICLE_FLAG = +val;
+      rowFlag.querySelectorAll(".ps-btn").forEach(x => x.classList.remove("active"));
+      b.classList.add("active");
+      if (playing) { const t = getTipo(); detenerParticulas(); iniciarParticulas(t); }
+    });
+    rowFlag.appendChild(b);
   });
 
-  // Botón de toggle
-  const toggleBtn = document.createElement("button");
-  toggleBtn.id = "particle-toggle-btn";
-  toggleBtn.textContent = "✨ Partículas";
+  // Sección: Tipo de partícula
+  const lbl2 = document.createElement("div");
+  lbl2.className = "ps-label";
+  lbl2.style.marginTop = "4px";
+  lbl2.textContent = "Tipo de partícula";
 
-  toggleBtn.addEventListener("click", () => {
-    menu.classList.toggle("open");
+  const rowType = document.createElement("div");
+  rowType.className = "ps-row";
+
+  [["auto","🔀 Auto"],["confeti","🎊 Confeti"]].forEach(([val, txt]) => {
+    const b = document.createElement("button");
+    b.className = "ps-btn" + (PARTICLE_TYPE === val ? " active" : "");
+    b.dataset.type = val;
+    b.textContent = txt;
+    b.addEventListener("click", () => {
+      PARTICLE_TYPE = val;
+      rowType.querySelectorAll(".ps-btn").forEach(x => x.classList.remove("active"));
+      b.classList.add("active");
+      if (playing) { const t = getTipo(); detenerParticulas(); iniciarParticulas(t); }
+    });
+    rowType.appendChild(b);
   });
 
-  // Selección de opción
-  menu.addEventListener("click", (e) => {
-    const btn = e.target.closest(".particle-opt");
-    if (!btn) return;
+  panel.append(lbl1, rowFlag, lbl2, rowType);
 
-    menu.querySelectorAll(".particle-opt").forEach(b => b.classList.remove("selected"));
-    btn.classList.add("selected");
+  // ── Botón toggle ──
+  const toggle = document.createElement("button");
+  toggle.id = "ps-toggle";
+  toggle.textContent = "✦ Partículas";
 
-    tipoParticula = btn.dataset.tipo || null;
-    toggleBtn.textContent = tipoParticula
-      ? `✨ ${TIPOS_LABEL[tipoParticula]}`
-      : "✨ Partículas";
-
-    menu.classList.remove("open");
-
-    // Si ya estaba reproduciendo, reiniciar con el nuevo tipo
-    if (playing) {
-      const tipo = tipoParticula || datos[seleccionActual]?.particulas || "confeti";
-      iniciarParticulas(tipo);
-    }
+  toggle.addEventListener("click", (e) => {
+    e.stopPropagation();
+    panel.classList.toggle("open");
   });
 
-  // Cerrar al hacer click fuera
   document.addEventListener("click", (e) => {
-    if (!wrap.contains(e.target)) menu.classList.remove("open");
+    if (!wrap.contains(e.target)) panel.classList.remove("open");
   });
 
-  wrap.appendChild(menu);
-  wrap.appendChild(toggleBtn);
+  wrap.append(panel, toggle);
   document.body.appendChild(wrap);
 }
 
-function mostrarSelectorParticulas(visible) {
-  const wrap = document.getElementById("particle-selector-wrap");
-  if (wrap) wrap.style.display = visible ? "flex" : "none";
+function mostrarSelectorUI(visible) {
+  const w = document.getElementById("ps-wrap");
+  if (w) w.style.display = visible ? "flex" : "none";
 }
 
-// ─── Targets AR ───────────────────────────────────────────────────────────────
+function getTipo() {
+  if (PARTICLE_TYPE === "auto")
+    return datos[seleccionActual]?.particulas || "confeti";
+  return PARTICLE_TYPE;
+}
+
+// ───────────────────────────────────────────────────────────────────────
+//  TARGETS AR
+// ───────────────────────────────────────────────────────────────────────
 document.querySelectorAll("[mindar-image-target]").forEach((entity) => {
 
   entity.addEventListener("targetFound", () => {
@@ -232,8 +267,8 @@ document.querySelectorAll("[mindar-image-target]").forEach((entity) => {
       mostrarInfo(clave);
       crearExperiencia(entity, clave);
       document.getElementById("play-btn").classList.remove("hidden");
-      crearSelectorParticulas();
-      mostrarSelectorParticulas(true);
+      crearSelectorUI();
+      mostrarSelectorUI(true);
     }
   });
 
@@ -244,12 +279,14 @@ document.querySelectorAll("[mindar-image-target]").forEach((entity) => {
     document.getElementById("info-card").classList.add("hidden");
     document.getElementById("play-btn").classList.add("hidden");
     document.getElementById("play-btn").innerText = "▶";
-    mostrarSelectorParticulas(false);
+    mostrarSelectorUI(false);
     playing = false;
   });
 });
 
-// ─── Info card ────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────────
+//  INFO CARD
+// ───────────────────────────────────────────────────────────────────────
 function mostrarInfo(clave) {
   const s = datos[clave];
   document.getElementById("info-card").classList.remove("hidden");
@@ -264,7 +301,9 @@ function mostrarInfo(clave) {
   });
 }
 
-// ─── Trivia ───────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────────
+//  TRIVIA
+// ───────────────────────────────────────────────────────────────────────
 document.getElementById("trivia-btn").addEventListener("click", () => mostrarTrivia());
 
 function mostrarTrivia() {
@@ -273,19 +312,18 @@ function mostrarTrivia() {
   document.getElementById("trivia-view").classList.remove("hidden");
   document.getElementById("trivia-view").innerHTML = `
     <h2>Trivia: ${trivia.pregunta}</h2>
-    ${trivia.opciones.map((o, i) =>
+    ${trivia.opciones.map((o,i) =>
       `<button class="answer" data-index="${i}">${o}</button>`
     ).join("")}`;
   activarEventosTrivia(trivia.correcta);
 }
 
-function activarEventosTrivia(indiceCorrecto) {
+function activarEventosTrivia(correcto) {
   document.querySelectorAll(".answer").forEach(btn => {
     btn.addEventListener("click", () => {
-      const idx = parseInt(btn.dataset.index);
-      if (idx === indiceCorrecto) {
+      if (parseInt(btn.dataset.index) === correcto) {
         btn.style.backgroundColor = "#4CAF50";
-        Swal.fire({ icon: "success", title: "¡Correcto!" }).then(volverAInformacion);
+        Swal.fire({ icon:"success", title:"¡Correcto!" }).then(() => mostrarInfo(seleccionActual));
       } else {
         btn.style.backgroundColor = "#f44336";
       }
@@ -293,14 +331,14 @@ function activarEventosTrivia(indiceCorrecto) {
   });
 }
 
-function volverAInformacion() { mostrarInfo(seleccionActual); }
-
-// ─── Modelo AR ────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────────
+//  MODELO AR
+// ───────────────────────────────────────────────────────────────────────
 function crearExperiencia(entity, clave) {
   const container = entity.querySelector(".modelo-container");
   container.innerHTML = "";
 
-  const modelo = document.createElement("a-gltf-model");
+  const modelo      = document.createElement("a-gltf-model");
   const escalaFinal = datos[clave].scale || "0.3 0.3 0.3";
 
   modelo.setAttribute("src", datos[clave].modelo);
@@ -310,26 +348,26 @@ function crearExperiencia(entity, clave) {
   modelo.id = "modelo-activo";
 
   modelo.setAttribute("animation__appear",
-    `property: scale; from: 0 0 0; to: ${escalaFinal}; dur: 1000; easing: easeOutBack`);
+    `property:scale;from:0 0 0;to:${escalaFinal};dur:1000;easing:easeOutBack`);
   modelo.setAttribute("animation__levitate",
-    "property: position; from: 0 0 0; to: 0 0.2 0; loop: true; dir: alternate; dur: 2000; easing: easeInOutSine; startEvents: startAnim; pauseEvents: stopAnim");
+    "property:position;from:0 0 0;to:0 0.2 0;loop:true;dir:alternate;dur:2000;easing:easeInOutSine;startEvents:startAnim;pauseEvents:stopAnim");
 
   const rotador = document.createElement("a-entity");
   rotador.setAttribute("animation__rotate",
-    "property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear; startEvents: startAnim; pauseEvents: stopAnim");
+    "property:rotation;to:0 360 0;loop:true;dur:10000;easing:linear;startEvents:startAnim;pauseEvents:stopAnim");
 
   rotador.appendChild(modelo);
   container.appendChild(rotador);
 
-  if (datos[clave].animacion) {
+  if (datos[clave].animacion)
     modelo.setAttribute("animation-mixer",
-      `clip:${datos[clave].animacion}; loop: repeat; timeScale: 0`);
-  }
+      `clip:${datos[clave].animacion};loop:repeat;timeScale:0`);
 }
 
-// ═════════════════════════════════════════════════════════════════════════════
-//  DESPACHADOR DE PARTÍCULAS
-// ═════════════════════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════════════════
+//  SISTEMA DE PARTÍCULAS
+// ═══════════════════════════════════════════════════════════════════════
+
 function iniciarParticulas(tipo) {
   detenerParticulas();
   if      (PARTICLE_FLAG === 1) iniciarFlag1(tipo);
@@ -343,203 +381,156 @@ function detenerParticulas() {
   else if (PARTICLE_FLAG === 3) detenerFlag3();
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-//  FLAG 1 — CSS en toda la pantalla
-// ─────────────────────────────────────────────────────────────────────────────
-function inyectarCSS(id, css) {
-  if (document.getElementById(id)) return;
-  const s = document.createElement("style");
-  s.id = id; s.textContent = css;
-  document.head.appendChild(s);
-}
-
+// ── Flag 1 — CSS pantalla completa ────────────────────────────────────
 function iniciarFlag1(tipo) {
-  inyectarCSS("confeti-styles-f1", `
+  inyectarCSS("css-f1", `
     @keyframes caerF1 {
-      0%   { transform:translateY(0) translateX(0) rotate(0deg); opacity:1; }
-      80%  { opacity:1; }
-      100% { transform:translateY(${window.innerHeight+40}px) translateX(var(--deriva)) rotate(var(--giro)); opacity:0; }
-    }
-  `);
-  const colores = COLORES_CONFETI[tipo] || COLORES_CONFETI.confeti;
+      0%   { transform:translateY(0) translateX(0) rotate(0deg); opacity:1 }
+      80%  { opacity:1 }
+      100% { transform:translateY(${window.innerHeight+40}px) translateX(var(--d)) rotate(var(--g)); opacity:0 }
+    }`);
+  const cols = COLORES[tipo] || COLORES.confeti;
   function crearP() {
-    const p   = document.createElement("div");
-    const tam = Math.random()*10+6, dur = Math.random()*2000+2000, delay = Math.random()*400;
-    const br  = Math.random()>.5?"50%":"2px";
+    const p = document.createElement("div");
+    const sz = Math.random()*10+6, dur = Math.random()*2000+2000, dl = Math.random()*400;
+    const br = Math.random()>.5 ? "50%" : "2px";
     p.style.cssText = `position:fixed;top:-20px;left:${Math.random()*window.innerWidth}px;
-      width:${tam}px;height:${tam*(br==="2px"?1.8:1)}px;
-      background:${colores[Math.floor(Math.random()*colores.length)]};border-radius:${br};
+      width:${sz}px;height:${sz*(br==="2px"?1.8:1)}px;
+      background:${cols[Math.floor(Math.random()*cols.length)]};border-radius:${br};
       opacity:1;z-index:9999;pointer-events:none;
-      animation:caerF1 ${dur}ms ${delay}ms ease-in forwards;
-      --deriva:${Math.random()*100-50}px;--giro:${Math.random()*720-360}deg;`;
+      animation:caerF1 ${dur}ms ${dl}ms ease-in forwards;
+      --d:${Math.random()*100-50}px;--g:${Math.random()*720-360}deg;`;
     document.body.appendChild(p);
     confettiParticles.push(p);
-    setTimeout(()=>{ p.remove(); confettiParticles=confettiParticles.filter(x=>x!==p); }, dur+delay+100);
+    setTimeout(() => { p.remove(); confettiParticles = confettiParticles.filter(x=>x!==p); }, dur+dl+100);
   }
-  for(let i=0;i<60;i++) setTimeout(()=>crearP(), i*20);
-  confettiInterval = setInterval(()=>{ for(let i=0;i<8;i++) crearP(); }, 300);
+  for (let i=0;i<60;i++) setTimeout(crearP, i*20);
+  confettiInterval = setInterval(() => { for(let i=0;i<8;i++) crearP(); }, 300);
 }
-
 function detenerFlag1() {
-  if(confettiInterval){ clearInterval(confettiInterval); confettiInterval=null; }
-  confettiParticles.forEach(p=>p.remove());
-  confettiParticles=[];
+  clearInterval(confettiInterval); confettiInterval = null;
+  confettiParticles.forEach(p=>p.remove()); confettiParticles = [];
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-//  FLAG 2 — CSS recortadas al canvas de A-Frame
-// ─────────────────────────────────────────────────────────────────────────────
+// ── Flag 2 — CSS recortada al canvas ─────────────────────────────────
 function getCameraRect() {
-  const canvas = document.querySelector("a-scene canvas") || document.querySelector("canvas");
-  if(!canvas) return { x:0, y:0, w:window.innerWidth, h:window.innerHeight };
-  const r = canvas.getBoundingClientRect();
+  const c = document.querySelector("a-scene canvas") || document.querySelector("canvas");
+  if (!c) return { x:0, y:0, w:window.innerWidth, h:window.innerHeight };
+  const r = c.getBoundingClientRect();
   return { x:r.left, y:r.top, w:r.width, h:r.height };
 }
-
 function iniciarFlag2(tipo) {
-  inyectarCSS("confeti-styles-f2", `
+  inyectarCSS("css-f2", `
     @keyframes caerF2 {
-      0%   { transform:translateY(0) translateX(0) rotate(0deg); opacity:1; }
-      80%  { opacity:1; }
-      100% { transform:translateY(var(--caida)) translateX(var(--deriva)) rotate(var(--giro)); opacity:0; }
-    }
-  `);
-  let wrapper = document.getElementById("confeti-wrapper-f2");
-  if(!wrapper){ wrapper=document.createElement("div"); wrapper.id="confeti-wrapper-f2"; document.body.appendChild(wrapper); }
-
-  function actualizarWrapper(){
+      0%   { transform:translateY(0) translateX(0) rotate(0deg); opacity:1 }
+      80%  { opacity:1 }
+      100% { transform:translateY(var(--c)) translateX(var(--d)) rotate(var(--g)); opacity:0 }
+    }`);
+  let wrap = document.getElementById("cf2-wrap");
+  if (!wrap) { wrap = document.createElement("div"); wrap.id="cf2-wrap"; document.body.appendChild(wrap); }
+  function updWrap() {
     const {x,y,w,h}=getCameraRect();
-    wrapper.style.cssText=`position:fixed;left:${x}px;top:${y}px;width:${w}px;height:${h}px;overflow:hidden;pointer-events:none;z-index:9999;`;
+    wrap.style.cssText=`position:fixed;left:${x}px;top:${y}px;width:${w}px;height:${h}px;overflow:hidden;pointer-events:none;z-index:9999;`;
   }
-  actualizarWrapper();
-
-  const colores = COLORES_CONFETI[tipo] || COLORES_CONFETI.confeti;
-  function crearP(){
-    actualizarWrapper();
-    const {w,h}=getCameraRect();
+  updWrap();
+  const cols = COLORES[tipo] || COLORES.confeti;
+  function crearP() {
+    updWrap(); const {w,h}=getCameraRect();
     const p=document.createElement("div");
-    const tam=Math.random()*10+6, dur=Math.random()*2000+2000, delay=Math.random()*400;
+    const sz=Math.random()*10+6, dur=Math.random()*2000+2000, dl=Math.random()*400;
     const br=Math.random()>.5?"50%":"2px";
     p.style.cssText=`position:absolute;top:-20px;left:${Math.random()*w}px;
-      width:${tam}px;height:${tam*(br==="2px"?1.8:1)}px;
-      background:${colores[Math.floor(Math.random()*colores.length)]};border-radius:${br};
-      pointer-events:none;
-      animation:caerF2 ${dur}ms ${delay}ms ease-in forwards;
-      --caida:${h+40}px;--deriva:${Math.random()*80-40}px;--giro:${Math.random()*720-360}deg;`;
-    wrapper.appendChild(p);
+      width:${sz}px;height:${sz*(br==="2px"?1.8:1)}px;
+      background:${cols[Math.floor(Math.random()*cols.length)]};border-radius:${br};
+      pointer-events:none;animation:caerF2 ${dur}ms ${dl}ms ease-in forwards;
+      --c:${h+40}px;--d:${Math.random()*80-40}px;--g:${Math.random()*720-360}deg;`;
+    wrap.appendChild(p);
     confettiParticles.push(p);
-    setTimeout(()=>{ p.remove(); confettiParticles=confettiParticles.filter(x=>x!==p); }, dur+delay+100);
+    setTimeout(()=>{ p.remove(); confettiParticles=confettiParticles.filter(x=>x!==p); }, dur+dl+100);
   }
-  for(let i=0;i<60;i++) setTimeout(()=>crearP(), i*20);
+  for(let i=0;i<60;i++) setTimeout(crearP, i*20);
   confettiInterval = setInterval(()=>{ for(let i=0;i<8;i++) crearP(); }, 300);
 }
-
 function detenerFlag2() {
-  if(confettiInterval){ clearInterval(confettiInterval); confettiInterval=null; }
-  confettiParticles.forEach(p=>p.remove());
-  confettiParticles=[];
-  const w=document.getElementById("confeti-wrapper-f2");
-  if(w) w.remove();
+  clearInterval(confettiInterval); confettiInterval=null;
+  confettiParticles.forEach(p=>p.remove()); confettiParticles=[];
+  const w=document.getElementById("cf2-wrap"); if(w) w.remove();
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-//  FLAG 3 — Partículas 3D con Three.js (renderer interno de A-Frame)
-//  El componente "confeti3d-tick" está registrado UNA SOLA VEZ arriba.
-//  El estado del sistema se comparte vía window.__confeti3dRef.
-// ─────────────────────────────────────────────────────────────────────────────
+// ── Flag 3 — Three.js 3D ─────────────────────────────────────────────
 function iniciarFlag3(tipo) {
   const sceneEl = document.querySelector("a-scene");
 
   function construir() {
+    // Doble-check: si ya hay un sistema activo, limpiarlo primero
+    detenerFlag3();
+
     const THREE      = AFRAME.THREE;
     const threeScene = sceneEl.object3D;
-    const colores    = COLORES_CONFETI[tipo] || COLORES_CONFETI.confeti;
+    const cols       = COLORES[tipo] || COLORES.confeti;
     const COUNT      = 300;
 
-    const geometry  = new THREE.BufferGeometry();
-    const positions = new Float32Array(COUNT * 3);
-    const colorsArr = new Float32Array(COUNT * 3);
+    const positions  = new Float32Array(COUNT*3);
+    const colorsArr  = new Float32Array(COUNT*3);
     const velocities = [];
     const phases     = [];
-    const tmpColor   = new THREE.Color();
+    const tmpC       = new THREE.Color();
 
-    for (let i = 0; i < COUNT; i++) {
+    for (let i=0; i<COUNT; i++) {
       positions[i*3]   = (Math.random()-.5)*4;
       positions[i*3+1] = Math.random()*3+0.5;
       positions[i*3+2] = (Math.random()-.5)*4;
-
-      tmpColor.set(colores[Math.floor(Math.random()*colores.length)]);
-      colorsArr[i*3]   = tmpColor.r;
-      colorsArr[i*3+1] = tmpColor.g;
-      colorsArr[i*3+2] = tmpColor.b;
-
-      velocities.push({
-        x: (Math.random()-.5)*0.018,
-        y: -(Math.random()*0.012+0.006),
-        z: (Math.random()-.5)*0.018,
-      });
+      tmpC.set(cols[Math.floor(Math.random()*cols.length)]);
+      colorsArr[i*3]   = tmpC.r;
+      colorsArr[i*3+1] = tmpC.g;
+      colorsArr[i*3+2] = tmpC.b;
+      velocities.push({ x:(Math.random()-.5)*.018, y:-(Math.random()*.012+.006), z:(Math.random()-.5)*.018 });
       phases.push(Math.random()*Math.PI*2);
     }
 
-    geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-    geometry.setAttribute("color",    new THREE.BufferAttribute(colorsArr, 3));
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+    geo.setAttribute("color",    new THREE.BufferAttribute(colorsArr, 3));
 
-    const material = new THREE.PointsMaterial({
-      size: 0.07,
-      vertexColors: true,
-      transparent: true,
-      opacity: 0.95,
-      depthWrite: false,
-      sizeAttenuation: true,
+    const mat = new THREE.PointsMaterial({
+      size: 0.07, vertexColors: true,
+      transparent: true, opacity: 0.95,
+      depthWrite: false, sizeAttenuation: true
     });
 
-    const points = new THREE.Points(geometry, material);
+    const points = new THREE.Points(geo, mat);
     points.name  = "confeti3d";
     threeScene.add(points);
 
-    // Compartir estado con el componente tick via window
-    window.__confeti3dRef = { geometry, velocities, phases, COUNT, active: true };
+    window.__confeti3dRef = { geometry:geo, velocities, phases, COUNT, active:true };
 
-    // Activar tick (solo setAttribute — el componente ya está registrado)
+    // setAttribute activa el tick (el componente ya fue registrado en window.onload)
     sceneEl.setAttribute("confeti3d-tick", "");
   }
 
-  // Esperar a que el renderer esté listo si aún no lo está
-  if (sceneEl.renderer) {
+  if (sceneEl.hasLoaded) {
     construir();
   } else {
-    sceneEl.addEventListener("renderstart", construir, { once: true });
+    sceneEl.addEventListener("loaded", construir, { once:true });
   }
 }
 
 function detenerFlag3() {
-  // Desactivar el tick primero
   if (window.__confeti3dRef) {
     window.__confeti3dRef.active = false;
     window.__confeti3dRef = null;
   }
-
-  // Quitar el Points de la escena Three.js
-  const sceneEl    = document.querySelector("a-scene");
-  const threeScene = sceneEl?.object3D;
-  if (threeScene) {
-    const points = threeScene.getObjectByName("confeti3d");
-    if (points) {
-      threeScene.remove(points);
-      points.geometry.dispose();
-      points.material.dispose();
-    }
-  }
-
-  // Quitar el atributo del componente tick (sin des-registrarlo)
-  if (sceneEl && sceneEl.hasAttribute("confeti3d-tick")) {
-    sceneEl.removeAttribute("confeti3d-tick");
+  const sceneEl = document.querySelector("a-scene");
+  if (sceneEl) {
+    const pts = sceneEl.object3D?.getObjectByName("confeti3d");
+    if (pts) { sceneEl.object3D.remove(pts); pts.geometry.dispose(); pts.material.dispose(); }
+    if (sceneEl.hasAttribute("confeti3d-tick")) sceneEl.removeAttribute("confeti3d-tick");
   }
 }
 
-// ═════════════════════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════════════════
 //  BOTÓN PLAY
-// ═════════════════════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════════════════
 document.getElementById("play-btn").addEventListener("click", () => {
   const modelo = document.querySelector("#modelo-activo");
   if (!modelo) return;
@@ -550,20 +541,15 @@ document.getElementById("play-btn").addEventListener("click", () => {
     modelo.emit("startAnim");
     if (modelo.components["animation-mixer"])
       modelo.setAttribute("animation-mixer", "timeScale", 1);
-
-    const tipo = tipoParticula || datos[seleccionActual]?.particulas || "confeti";
-    iniciarParticulas(tipo);
+    iniciarParticulas(getTipo());
     document.getElementById("play-btn").innerText = "⏸";
-
   } else {
     rotador.emit("stopAnim");
     modelo.emit("stopAnim");
     if (modelo.components["animation-mixer"])
       modelo.setAttribute("animation-mixer", "timeScale", 0);
-
     detenerParticulas();
     document.getElementById("play-btn").innerText = "▶";
   }
-
   playing = !playing;
 });
