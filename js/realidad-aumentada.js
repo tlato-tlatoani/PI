@@ -234,8 +234,10 @@ function crearParticulas(entity, tipo) {
   }
 
 
-  p.setAttribute("particle-system", config);
+  // p.setAttribute("particle-system", config);
+  p.setAttribute("particle-system", config + " enabled: false;");
   p.setAttribute("particle-system", "enabled", false);
+  //particulas.setAttribute("particle-system", "enabled: true");
 
   entity.appendChild(p);
 }
@@ -262,7 +264,8 @@ btn.addEventListener("click", () => {
     }
 
     if (particulas) {
-      particulas.setAttribute("particle-system", "enabled", true);
+      //particulas.setAttribute("particle-system", "enabled", true);
+      particulas.setAttribute("particle-system", "enabled: true");
     }
 
     btn.innerText = "⏸";
@@ -277,7 +280,8 @@ btn.addEventListener("click", () => {
     }
 
     if (particulas) {
-      particulas.setAttribute("particle-system", "enabled", false);
+      //particulas.setAttribute("particle-system", "enabled", false);
+      particulas.setAttribute("particle-system", "enabled: false");
     }
 
     btn.innerText = "▶";
