@@ -8,10 +8,11 @@
 
     <!-- realidad aumentada -->
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.1.5/dist/mindar-image.prod.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.1.5/dist/mindar-image-aframe.prod.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v7.0.0/dist/aframe-extras.min.js"></script>
-   <!--<script src="https://unpkg.com/aframe-particle-system-component@1.1.3/dist/aframe-particle-system-component.min.js"></script> -->
+
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    <!--<script src="https://unpkg.com/aframe-particle-system-component@1.1.3/dist/aframe-particle-system-component.min.js"></script> -->
 
     <title>Realidad Aumentada</title>
 </head>
@@ -45,15 +46,19 @@
 
     <div class="escaneado">
         <div class="camera-container">
-            
+
             <a-scene mindar-image="imageTargetSrc: ./targets.mind; autoStart: true;" embedded renderer="alpha: true"
-                color-space="sRGB" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false mindar-image="maxTrack:1"">
+                color-space="sRGB" vr-mode-ui="enabled: false"
+                device-orientation-permission-ui="enabled: false mindar-image=" maxTrack:1"">
 
                 <!-- Pre-cargar los modelos -->
                 <a-assets> <a-asset-item id="mexicoModel" src="./assets/modelos/pinata.glb"></a-asset-item> </a-assets>
-                <a-assets> <a-asset-item id="sudafricaModel" src="./assets/modelos/elephant.glb"></a-asset-item> </a-assets>
-                <a-assets> <a-asset-item id="espanaModel" src="./assets/modelos/guitarra.glb"></a-asset-item> </a-assets>
-                <a-assets> <a-asset-item id="japonModel" src="./assets/modelos/cherry-tree.glb"></a-asset-item> </a-assets>
+                <a-assets> <a-asset-item id="sudafricaModel" src="./assets/modelos/elephant.glb"></a-asset-item>
+                </a-assets>
+                <a-assets> <a-asset-item id="espanaModel" src="./assets/modelos/guitarra.glb"></a-asset-item>
+                </a-assets>
+                <a-assets> <a-asset-item id="japonModel" src="./assets/modelos/cherry-tree.glb"></a-asset-item>
+                </a-assets>
                 <a-assets> <a-asset-item id="coreaModel" src="./assets/modelos/moranhwa.glb"></a-asset-item> </a-assets>
                 <a-assets> <a-asset-item id="colombiaModel" src="./assets/modelos/cafe.glb"></a-asset-item> </a-assets>
                 <a-assets> <a-asset-item id="tunezModel" src="./assets/modelos/camello.glb"></a-asset-item> </a-assets>
@@ -76,7 +81,7 @@
                     <a-entity class="modelo-container"></a-entity>
                 </a-entity>
 
-                <a-entity data-clave="uzbekistan" mindar-image-target="targetIndex: 3">    <!--uzbekistan-->
+                <a-entity data-clave="uzbekistan" mindar-image-target="targetIndex: 3"> <!--uzbekistan-->
                     <a-entity class="modelo-container"></a-entity>
                 </a-entity>
 
@@ -88,7 +93,7 @@
                     <a-entity class="modelo-container"></a-entity>
                 </a-entity>
 
-                <a-entity data-clave="uruguay" mindar-image-target="targetIndex: 6"> <!--uruguay-->        
+                <a-entity data-clave="uruguay" mindar-image-target="targetIndex: 6"> <!--uruguay-->
                     <a-entity class="modelo-container"></a-entity>
                 </a-entity>
 
