@@ -6,12 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/realidad-aumentada.css">
 
-    <!-- realidad aumentada -->
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://unpkg.com/aframe-particle-system-component@1.1.3/dist/aframe-particle-system-component.min.js"></script>
+
+    <!-- MindAR -->
     <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.1.4/dist/mindar-image-aframe.prod.js"></script>
+
+    <!-- Luego extras -->
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
-    
+
+    <!-- Partículas -->
+    <script
+        src="https://unpkg.com/aframe-particle-system-component@1.1.3/dist/aframe-particle-system-component.min.js"></script>
 
     <title>Realidad Aumentada</title>
 </head>
@@ -46,15 +51,18 @@
     <div class="escaneado">
         <div class="camera-container">
 
-            <a-scene mindar-image="imageTargetSrc: /targets.mind; autoStart: true; maxTrack: 1;" embedded renderer="alpha: true"
-                color-space="sRGB" vr-mode-ui="enabled: false"
+            <a-scene mindar-image="imageTargetSrc: /targets.mind; autoStart: true; maxTrack: 1;" embedded
+                renderer="alpha: true" color-space="sRGB" vr-mode-ui="enabled: false"
                 device-orientation-permission-ui="enabled: false">
 
                 <!-- Pre-cargar los modelos -->
                 <a-assets> <a-asset-item id="mexicoModel" src="./assets/modelos/pinata.glb"></a-asset-item> </a-assets>
-                <a-assets> <a-asset-item id="sudafricaModel" src="./assets/modelos/elephant.glb"></a-asset-item> </a-assets>
-                <a-assets> <a-asset-item id="espanaModel" src="./assets/modelos/guitarra.glb"></a-asset-item> </a-assets>
-                <a-assets> <a-asset-item id="japonModel" src="./assets/modelos/cherry-tree.glb"></a-asset-item> </a-assets>
+                <a-assets> <a-asset-item id="sudafricaModel" src="./assets/modelos/elephant.glb"></a-asset-item>
+                </a-assets>
+                <a-assets> <a-asset-item id="espanaModel" src="./assets/modelos/guitarra.glb"></a-asset-item>
+                </a-assets>
+                <a-assets> <a-asset-item id="japonModel" src="./assets/modelos/cherry-tree.glb"></a-asset-item>
+                </a-assets>
                 <a-assets> <a-asset-item id="coreaModel" src="./assets/modelos/moranhwa.glb"></a-asset-item> </a-assets>
                 <a-assets> <a-asset-item id="colombiaModel" src="./assets/modelos/cafe.glb"></a-asset-item> </a-assets>
                 <a-assets> <a-asset-item id="tunezModel" src="./assets/modelos/camello.glb"></a-asset-item> </a-assets>
