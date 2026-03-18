@@ -234,11 +234,8 @@ function crearParticulas(entity, tipo) {
   }
 
 
-  // p.setAttribute("particle-system", config);
-  p.setAttribute("particle-system", config + " enabled: false;");
-  //p.setAttribute("particle-system", "enabled", false);
-  p.setAttribute("particle-system", "enabled: false");
-  //particulas.setAttribute("particle-system", "enabled: true");
+  p.setAttribute("particle-system", config);
+  p.setAttribute("particle-system", "enabled", false);
 
   entity.appendChild(p);
 }
@@ -254,7 +251,6 @@ btn.addEventListener("click", () => {
   const rotador = modelo.parentElement;
   const particulas = modelo.closest("[mindar-image-target]").querySelector(".particulas");
 
-
   if (!playing) {
 
     rotador.emit("startAnim");
@@ -264,29 +260,44 @@ btn.addEventListener("click", () => {
       modelo.setAttribute("animation-mixer", "timeScale", 1);
     }
 
-    if (particulas) {
-      //particulas.setAttribute("particle-system", "enabled", true);
-      particulas.setAttribute("particle-system", "enabled: true");
+    if (!particulas) {
+      crearParticulas(modelo.closest("[mindar-image-target]"), datos[seleccionActual].particulas);
     }
 
     btn.innerText = "⏸";
-
-  } else {
-
-    rotador.emit("stopAnim");
-    modelo.emit("stopAnim");
-
-    if (modelo.components["animation-mixer"]) {
-      modelo.setAttribute("animation-mixer", "timeScale", 0);
-    }
-
-    if (particulas) {
-      //particulas.setAttribute("particle-system", "enabled", false);
-      particulas.setAttribute("particle-system", "enabled: false");
-    }
-
-    btn.innerText = "▶";
+    console.log("Partículas creadas:", tipo);
   }
+
+  // if (!playing) {
+
+  //   rotador.emit("startAnim");
+  //   modelo.emit("startAnim");
+
+  //   if (modelo.components["animation-mixer"]) {
+  //     modelo.setAttribute("animation-mixer", "timeScale", 1);
+  //   }
+
+  //   if (particulas) {
+  //     particulas.setAttribute("particle-system", "enabled", true);
+  //   }
+
+  //   btn.innerText = "⏸";
+
+  // } else {
+
+  //   rotador.emit("stopAnim");
+  //   modelo.emit("stopAnim");
+
+  //   if (modelo.components["animation-mixer"]) {
+  //     modelo.setAttribute("animation-mixer", "timeScale", 0);
+  //   }
+
+  //   if (particulas) {
+  //     particulas.setAttribute("particle-system", "enabled", false);
+  //   }
+
+  //   btn.innerText = "▶";
+  // }
 
   /* if (!playing) {
  
