@@ -2,6 +2,7 @@
 let seleccionActual = null;
 
 let datos = {};
+let playing = false;
 
 fetch("data/selecciones.json")
   .then(response => response.json())
@@ -66,6 +67,9 @@ document.querySelectorAll("[mindar-image-target]").forEach((entity) => {
 
     document.getElementById("info-card").classList.add("hidden");
     document.getElementById("play-btn").classList.add("hidden");
+    document.getElementById("play-btn").innerText = "▶";
+    playing = false;
+
   });
 
 });
@@ -170,7 +174,6 @@ function crearExperiencia(entity, clave) {
   modelo.setAttribute("scale", "0 0 0"); // Inicia en 0 para el efecto appear
   modelo.setAttribute("position", "0 0.01 0");
   modelo.setAttribute("shadow","cast:false; receive:false");
-  modelo.setAttribute("animation-mixer","loop:repeat");
   modelo.id = "modelo-activo";
 
   modelo.setAttribute("animation__appear",
@@ -189,9 +192,8 @@ function crearExperiencia(entity, clave) {
 
   if (datos[clave].animacion) {
     modelo.setAttribute("animation-mixer",
-      `clip: ${datos[clave].animacion}; loop: repeat; timeScale: 0`); // Iniciamos en 0 (pausado)
+      `clip:${datos[clave].animacion}; loop: repeat; timeScale: 0`);
   }
-
   /*crearParticulas(entity, datos[clave].particulas);*/
 }
 
@@ -261,7 +263,6 @@ function crearExperiencia(entity, clave) {
 
 
 const btn = document.getElementById("play-btn");
-let playing = false;
 
 btn.addEventListener("click", () => {
 
@@ -277,7 +278,7 @@ btn.addEventListener("click", () => {
     modelo.emit("startAnim");
 
     if (modelo.components["animation-mixer"]) {
-      modelo.setAttribute("animation-mixer", "timeScale: 1");
+      modelo.setAttribute("animation-mixer", "timeScale", 1);
     }
 
     /*if (particulas) {
@@ -292,7 +293,7 @@ btn.addEventListener("click", () => {
     modelo.emit("stopAnim");
 
     if (modelo.components["animation-mixer"]) {
-      modelo.setAttribute("animation-mixer", "timeScale: 0");
+      modelo.setAttribute("animation-mixer", "timeScale", 0);
     }
 
     /*if (particulas) {
