@@ -50,8 +50,8 @@ document.querySelectorAll("[mindar-image-target]").forEach((entity) => {
 
     const particulas = entity.querySelector(".particulas");
 
-    if(particulas){
-        particulas.remove();
+    if (particulas) {
+      particulas.remove();
     }
 
     const container = entity.querySelector(".modelo-container");
@@ -234,7 +234,8 @@ function crearParticulas(entity, tipo) {
   }
 
 
-  p.setAttribute("particle-system", config + " enabled:false");
+  p.setAttribute("particle-system", config);
+  p.setAttribute("particle-system", "enabled", false);
 
   entity.appendChild(p);
 }
@@ -248,41 +249,10 @@ btn.addEventListener("click", () => {
   if (!modelo) return;
 
   const rotador = modelo.parentElement;
-  const particulas = document.querySelector(".particulas");
+  const particulas = modelo.closest("[mindar-image-target]").querySelector(".particulas");
 
 
   if (!playing) {
-
-  rotador.emit("startAnim");
-  modelo.emit("startAnim");
-
-  if (modelo.components["animation-mixer"]) {
-    modelo.setAttribute("animation-mixer", "timeScale", 1);
-  }
-
-  if (particulas) {
-    particulas.setAttribute("particle-system", "enabled", true);
-  }
-
-  btn.innerText = "⏸";
-
-} else {
-
-  rotador.emit("stopAnim");
-  modelo.emit("stopAnim");
-
-  if (modelo.components["animation-mixer"]) {
-    modelo.setAttribute("animation-mixer", "timeScale", 0);
-  }
-
-  if (particulas) {
-    particulas.setAttribute("particle-system", "enabled", false);
-  }
-
-  btn.innerText = "▶";
-}
-
- /* if (!playing) {
 
     rotador.emit("startAnim");
     modelo.emit("startAnim");
@@ -291,8 +261,8 @@ btn.addEventListener("click", () => {
       modelo.setAttribute("animation-mixer", "timeScale", 1);
     }
 
-    /*if (particulas) {
-      particulas.setAttribute("particle-system", "enabled: true");
+    if (particulas) {
+      particulas.setAttribute("particle-system", "enabled", true);
     }
 
     btn.innerText = "⏸";
@@ -306,12 +276,43 @@ btn.addEventListener("click", () => {
       modelo.setAttribute("animation-mixer", "timeScale", 0);
     }
 
-    /*if (particulas) {
-      particulas.setAttribute("particle-system", "enabled: false");
+    if (particulas) {
+      particulas.setAttribute("particle-system", "enabled", false);
     }
 
     btn.innerText = "▶";
-  }*/
+  }
+
+  /* if (!playing) {
+ 
+     rotador.emit("startAnim");
+     modelo.emit("startAnim");
+ 
+     if (modelo.components["animation-mixer"]) {
+       modelo.setAttribute("animation-mixer", "timeScale", 1);
+     }
+ 
+     /*if (particulas) {
+       particulas.setAttribute("particle-system", "enabled: true");
+     }
+ 
+     btn.innerText = "⏸";
+ 
+   } else {
+ 
+     rotador.emit("stopAnim");
+     modelo.emit("stopAnim");
+ 
+     if (modelo.components["animation-mixer"]) {
+       modelo.setAttribute("animation-mixer", "timeScale", 0);
+     }
+ 
+     /*if (particulas) {
+       particulas.setAttribute("particle-system", "enabled: false");
+     }
+ 
+     btn.innerText = "▶";
+   }*/
 
   playing = !playing;
 });
