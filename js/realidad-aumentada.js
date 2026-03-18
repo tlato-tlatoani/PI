@@ -265,7 +265,7 @@ btn.addEventListener("click", () => {
     }
 
     btn.innerText = "⏸";
-    console.log("Partículas creadas:", tipo);
+    console.log("Partículas creadas:", datos[seleccionActual].particulas);
   }
 
   // if (!playing) {
