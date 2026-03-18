@@ -205,7 +205,7 @@ function crearParticulas(entity, tipo) {
   let config = "";
 
   if (tipo === "confeti") {
-    config = "particleCount:250; color:#00ff00,#ffffff,#ff0000; velocityValue:0 1 0; velocitySpread:1 1 1; size:0.3; maxAge:2;";
+    config = "particleCount:250; color:#00ff00,#ffffff,#ff0000; velocityValue:0 1 0; velocitySpread:1 1 1; size:0.3; maxAge:2; opacity:1;";
   }
 
   if (tipo === "polvo") {
