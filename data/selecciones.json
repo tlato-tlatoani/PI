@@ -111,7 +111,7 @@
     "nombre": "Sudáfrica",
     "modelo":"../assets/modelos/elephant.glb",
     "animacion":"Stand_01",
-    "scale":"16.0 16.0 16.0",
+    "scale":"18.0 18.0 18.0",
     "particulas":"polvo",
     "descripcion": "La Selección de fútbol de Sudáfrica, conocida como Bafana Bafana, representa al país en competiciones internacionales y es miembro de la CAF. Es recordada mundialmente por haber sido anfitriona de la Copa Mundial de la FIFA 2010, el primer Mundial celebrado en el continente africano.",
 
@@ -278,7 +278,7 @@
     "nombre": "Túnez",
     "modelo":"../assets/modelos/camello.glb",
     "animacion":"Idle_01",
-    "scale":"0.7 0.7 0.7",
+    "scale":"0.5 0.5 0.5",
     "particulas":"polvo",
     "descripcion": "La Selección de fútbol de Túnez, conocida como Las Águilas de Cartago, es una de las selecciones más constantes del norte de África y miembro de la CAF. Ha participado en varias Copas del Mundo y es reconocida por su disciplina táctica y competitividad en torneos internacionales.",
 
