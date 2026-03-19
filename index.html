@@ -9,6 +9,7 @@
     <!-- ✅ Versiones compatibles entre sí -->
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v7.0.0/dist/aframe-extras.min.js"></script>
 
     <!-- Partículas -->
     <script
@@ -47,7 +48,8 @@
     <div class="escaneado">
         <div class="camera-container">
 
-            <a-scene mindar-image="imageTargetSrc: ../targets.mind; autoStart: true; maxTrack: 1;" embedded
+            <a-scene mindar-image="imageTargetSrc: ../targets.mind; filterMinCF: 0.0003; filterBeta: 0.001; autoStart: true; 
+                maxTrack: 1;" embedded
                 renderer="alpha: true" color-space="sRGB" vr-mode-ui="enabled: false"
                 device-orientation-permission-ui="enabled: false">
 
