@@ -5,7 +5,34 @@
     "scale":"0.3 0.3 0.3",
     "particulas":"confeti",
     "descripcion": "La Selección de fútbol de México, conocida como El Tri, es una de las selecciones más importantes de la CONCACAF y una presencia constante en los Mundiales. Destaca por su regularidad en clasificaciones y por haber sido anfitriona en múltiples ocasiones, incluyendo la próxima Copa Mundial de la FIFA 2026.",
-
+    "participaciones": 17,
+    "goleadores":[
+      {
+        "nombre":"Cuauhtemoc Blanco",
+        "goles": 119,
+        "partidos": 38
+      },
+      {
+        "nombre":"Raul Jimenez",
+        "goles": 113,
+        "partidos": 45
+      },
+      {
+        "nombre":"Javier Hernandez",
+        "goles": 109,
+        "partidos": 52
+      },
+      {
+        "nombre":"Jared Borgetti",
+        "goles": 89,
+        "partidos": 46
+      },
+      {
+        "nombre":"Luis Hernandez",
+        "goles": 85,
+        "partidos": 35
+      }
+    ],
     "mejoresResultados": [
       {
         "anio": 1970,
@@ -41,7 +68,34 @@
     "scale":"0.3 0.3 0.3",
     "particulas":"humo",
     "descripcion": "La Selección de fútbol de Colombia es una de las selecciones más competitivas de Sudamérica y miembro de la CONMEBOL. Destaca por su estilo técnico y ofensivo, y ha tenido participaciones memorables en Copas del Mundo, especialmente en la década de 2010.",
-
+    "participaciones": 16,
+    "goleadores":[
+      {
+        "nombre":"Radamel Falcao Garcia",
+        "goles": 36,
+        "partidos": 105
+      },
+      {
+        "nombre":"James Rodríguez",
+        "goles": 31,
+        "partidos": 122
+      },
+      {
+        "nombre":"Arnoldo Iguarán",
+        "goles": 25,
+        "partidos": 68
+      },
+      {
+        "nombre":"Luis Díaz",
+        "goles": 21,
+        "partidos": 70
+      },
+      {
+        "nombre":"Faustino Asprilla",
+        "goles": 20,
+        "partidos": 57
+      }
+    ],
     "mejoresResultados": [
       {
         "anio": 2014,

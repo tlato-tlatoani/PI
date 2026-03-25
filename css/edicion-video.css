@@ -221,6 +221,17 @@ select:focus{
     }
 }
 
+
+#swal2-title{
+  font-family: Zalando-Sans-Medium;
+  color: #000000;
+}
+
+#swal2-html-container{
+  font-family: Zalando-Sans-Regular;
+}
+
+
 /*
 PALETA DE COLORES
 blanco: #ffffff
