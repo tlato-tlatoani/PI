@@ -199,6 +199,62 @@ tbody tr:hover {
 #swal2-html-container{
   font-family: Zalando-Sans-Regular;
 }
+
+@media (max-width: 768px) {
+
+  .pais{
+    width: 300px;
+  }
+  .btn-text {
+    display: none;
+  }
+
+  .secciones {
+    margin: 10px 0px 0px 0px;
+  }
+
+  .seccion {
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+  }
+
+  .icono {
+    width: 28px;
+    height: 28px;
+    margin: 0;
+  }
+
+  .camera-container {
+    width: 300px;
+    height: 300px;
+    position: relative;
+  }
+
+  .camera-container video {
+    width: 100% !important;
+    height: 100% !important;
+    position: absolute;
+    top: 0 !important;
+    left: 0 !important;
+    object-fit: cover;
+  }
+  
+  .escaneado {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .scanning{
+    padding-top: 0;
+    padding-bottom: 45px;
+  }
+  .card {
+    width: 260px;
+    height: 100%;
+    margin-bottom: 20px;
+  }
+}
 /*
 PALETA DE COLORES
 blanco: #ffffff
