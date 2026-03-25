@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/realidad-aumentada.css">
 
-    <!-- ✅ Versiones compatibles entre sí -->
+    <!-- RA -->
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v7.0.0/dist/aframe-extras.min.js"></script>
@@ -25,10 +25,10 @@
     </header>
 
     <div class="secciones">
-        <a href="realidad-aumentada.html">
+        <a href="index.html">
 
             <button class="seccion">
-                <img src="../assets/iconos/cube.png" alt="icono-ra" width="20" height="20" class="icono">
+                <img src="/assets/iconos/cube.png" alt="icono-ra" width="20" height="20" class="icono">
                 <span class="btn-text">Realidad Aumentada</span>
             </button>
         </a>
@@ -36,9 +36,18 @@
         <a href="edicion-video.html">
 
             <button class="seccion">
-                <img src="../assets/iconos/video-camera.png" alt="icono-edicion-video" width="20" height="20"
+                <img src="/assets/iconos/video-camera.png" alt="icono-edicion-video" width="20" height="20"
                     class="icono">
                 <span class="btn-text">Edición de video</span>
+            </button>
+        </a>
+
+        <a href="estadisticas.html">
+
+            <button class="seccion">
+                <img src="/assets/iconos/estadisticas.png" alt="icono-edicion-video" width="20" height="20"
+                    class="icono">
+                <span class="btn-text">Estadísticas</span>
             </button>
         </a>
 
@@ -123,19 +132,7 @@
                     <p id="card-descripcion"></p>
 
                     <hr>
-
-                    <p><strong>Mejores resultados:</strong></p>
-
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Año</th>
-                                <th>Mundial</th>
-                                <th>Instancia</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tabla-resultados"></tbody>
-                    </table>
+                    <img class="img-pais">
 
                     <button id="trivia-btn">Trivia</button>
                 </div>

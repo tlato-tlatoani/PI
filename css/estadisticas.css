@@ -1,15 +1,58 @@
-header {
-  background-color: #B2B2B2;
-  width: 100%;
-  height: 90px;
-  top: 0;
-  left: 0;
+@font-face {
+  font-family: "Alan-Sans";
+  src: url(../assets/fonts/Alan_Sans/AlanSans-VariableFont_wght.ttf)format(truetype);
 }
 
+@font-face {
+  font-family: "Zalando-Sans-Regular";
+  src: url(../assets/fonts/Zalando_Sans/ZalandoSans-Regular.ttf)format(truetype);
+}
+
+@font-face {
+  font-family: "Zalando-Sans-Medium";
+  src: url(../assets/fonts/Zalando_Sans/ZalandoSans-Medium.ttf)format(truetype);
+}
+
+@font-face {
+  font-family: "Zalando-Sans-SemiBold";
+  src: url(../assets/fonts/Zalando_Sans/ZalandoSans-SemiBold.ttf)format(truetype);
+}
+
+header {
+  width: 100%;
+  height: 60px;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #000000b1;
+   z-index: 20;
+}
+
+header,
+.secciones {
+  position: relative;
+  z-index: 20;
+}
+
+
 header h1 {
-  color: #000000;
-  font-family: Arial, Helvetica, sans-serif;
+  color: #ffffff;
+  font-family: Alan-Sans;
+  font-size: 30px;
   margin: 20px;
+}
+
+header button {
+  color: #ffffff;
+  margin: 0 30px;
+  background-color: #7e3bed;
+  padding: 5px 10px;
+  border-radius: 100%;
+  cursor: pointer;
+  border: none;
+  font-size: 15px;
 }
 
 body {
@@ -17,11 +60,10 @@ body {
   position: relative;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
   margin: 0;
-  font-family: Arial, sans-serif;
   gap: 10px;
-  background: #D9D9D9;
+  background-image: url("../assets/imagenes/fondo7.jpg");
+  min-height: 100vh;
 }
 
 .secciones {
@@ -33,15 +75,134 @@ body {
 
 }
 
+a {
+  text-decoration: none;
+}
+
 .secciones button {
-  padding: 20px;
+  padding: 15px 20px;
   border: none;
   border-radius: 100px;
-  background: #B2B2B2;
+  background: #c6ff34;
   cursor: pointer;
-
-  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  align-content: center;
+  font-family: Zalando-Sans-Medium;
   color: #000000;
-  font-weight: 500;
   font-size: 16px;
+  transition: 0.2s;
 }
+
+.secciones button:hover {
+  background-color: #7e3bed;
+  transform: scale(1.1);
+}
+
+.icono {
+  margin-right: 5px;
+}
+
+
+.pais {
+  border: none;
+  margin-bottom: 10px;
+  border-radius: 15px;
+  overflow: hidden;
+  width: 600px;
+}
+
+.pais-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 10px;
+  background-image: linear-gradient(#5b28ad83, #45159283);
+  color: #ffffff;
+  font-family: Zalando-Sans-Medium;
+  font-size: 20px;
+}
+
+.pais-header img {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+.pais-contenido {
+  display: none;
+  padding: 10px;
+  background: #000000;
+  color: #ffffff;
+}
+
+.pais-contenido p{
+  font-family: Zalando-Sans-Regular;
+  margin-bottom: 8px;
+}
+
+.pais-contenido h2{
+  font-family: Zalando-Sans-Semibold;
+}
+
+.participaciones{
+  font-family: Zalando-Sans-Semibold;
+  color: #c6ff34;
+}
+
+
+table {
+  width: 100%;
+  margin: 10px 0px;
+  font-family: Zalando-Sans-Regular;
+  font-size: 15px;
+}
+
+table,
+th,
+td {
+  border-collapse: collapse;
+  padding: 5px 10px;
+  text-align: center;
+}
+
+th {
+  background-color: #7e3bed;
+  color: #000000;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #1c1c1c;
+}
+
+tbody tr:hover {
+  background-color: #85ac23; /* efecto al pasar el mouse */
+  transition: 0.2s;
+}
+
+/* cuando esté activo */
+.pais.activo .pais-contenido {
+  display: block;
+}
+
+.pais.activo .flecha {
+  transform: rotate(180deg);
+}
+
+
+#swal2-title{
+  font-family: Zalando-Sans-Medium;
+  color: #000000;
+}
+
+#swal2-html-container{
+  font-family: Zalando-Sans-Regular;
+}
+/*
+PALETA DE COLORES
+blanco: #ffffff
+Lime: #c6ff34
+MORADO: #7e3bed
+NEGRO: #000000
+*/

@@ -5,7 +5,34 @@
     "scale":"0.3 0.3 0.3",
     "particulas":"confeti",
     "descripcion": "La Selección de fútbol de México, conocida como El Tri, es una de las selecciones más importantes de la CONCACAF y una presencia constante en los Mundiales. Destaca por su regularidad en clasificaciones y por haber sido anfitriona en múltiples ocasiones, incluyendo la próxima Copa Mundial de la FIFA 2026.",
-
+    "participaciones": 17,
+    "goleadores":[
+      {
+        "nombre":"Cuauhtemoc Blanco",
+        "goles": 119,
+        "partidos": 38
+      },
+      {
+        "nombre":"Raul Jimenez",
+        "goles": 113,
+        "partidos": 45
+      },
+      {
+        "nombre":"Javier Hernandez",
+        "goles": 109,
+        "partidos": 52
+      },
+      {
+        "nombre":"Jared Borgetti",
+        "goles": 89,
+        "partidos": 46
+      },
+      {
+        "nombre":"Luis Hernandez",
+        "goles": 85,
+        "partidos": 35
+      }
+    ],
     "mejoresResultados": [
       {
         "anio": 1970,
@@ -41,7 +68,34 @@
     "scale":"0.3 0.3 0.3",
     "particulas":"humo",
     "descripcion": "La Selección de fútbol de Colombia es una de las selecciones más competitivas de Sudamérica y miembro de la CONMEBOL. Destaca por su estilo técnico y ofensivo, y ha tenido participaciones memorables en Copas del Mundo, especialmente en la década de 2010.",
-
+    "participaciones": 16,
+    "goleadores":[
+      {
+        "nombre":"Radamel Falcao Garcia",
+        "goles": 36,
+        "partidos": 105
+      },
+      {
+        "nombre":"James Rodríguez",
+        "goles": 31,
+        "partidos": 122
+      },
+      {
+        "nombre":"Arnoldo Iguarán",
+        "goles": 25,
+        "partidos": 68
+      },
+      {
+        "nombre":"Luis Díaz",
+        "goles": 21,
+        "partidos": 70
+      },
+      {
+        "nombre":"Faustino Asprilla",
+        "goles": 20,
+        "partidos": 57
+      }
+    ],
     "mejoresResultados": [
       {
         "anio": 2014,
@@ -77,7 +131,34 @@
     "scale":"0.9 0.9 0.9",
     "particulas":"hojas",
     "descripcion": "La Selección de fútbol de Uruguay, conocida como La Celeste, es una de las selecciones más históricas del mundo y miembro de la CONMEBOL. Fue campeona en las primeras ediciones de la Copa del Mundo y es reconocida por su tradición, carácter competitivo y legado en el fútbol internacional.",
-
+    "participaciones": 14,
+    "goleadores":[
+      {
+        "nombre":"Luis Suarez",
+        "goles": 69,
+        "partidos": 142
+      },
+      {
+        "nombre":"Edinson Cavani",
+        "goles": 58,
+        "partidos": 136
+      },
+      {
+        "nombre":"Diego Forlán",
+        "goles": 36,
+        "partidos": 112
+      },
+      {
+        "nombre":"Héctor Scarone",
+        "goles": 31,
+        "partidos": 51
+      },
+      {
+        "nombre":"Ángel Romano",
+        "goles": 28,
+        "partidos": 70
+      }
+    ],
     "mejoresResultados": [
       {
         "anio": 1950,
@@ -114,7 +195,34 @@
     "scale":"18.0 18.0 18.0",
     "particulas":"polvo",
     "descripcion": "La Selección de fútbol de Sudáfrica, conocida como Bafana Bafana, representa al país en competiciones internacionales y es miembro de la CAF. Es recordada mundialmente por haber sido anfitriona de la Copa Mundial de la FIFA 2010, el primer Mundial celebrado en el continente africano.",
-
+    "participaciones": 3,
+    "goleadores":[
+      {
+        "nombre":"Sede Junior Dion",
+        "goles": 12,
+        "partidos": 20
+      },
+      {
+        "nombre":"Iqraam Rayners",
+        "goles": 10,
+        "partidos": 17
+      },
+      {
+        "nombre":"Bradley Grobler",
+        "goles": 8,
+        "partidos": 20
+      },
+      {
+        "nombre":"Relebohile Ratomo",
+        "goles": 7,
+        "partidos": 19
+      },
+      {
+        "nombre":"Langelihle Phili",
+        "goles": 7,
+        "partidos": 19
+      }
+    ],
     "mejoresResultados": [
       {
         "anio": 2010,
@@ -151,7 +259,34 @@
     "scale":"2.2 2.2 2.2",
     "particulas":"luciernagas",
     "descripcion": "La Selección de fútbol de Corea del Sur es una de las potencias asiáticas y miembro destacado de la AFC. Es reconocida por su disciplina, velocidad y constancia en Copas del Mundo, siendo una de las selecciones asiáticas con más participaciones en la historia del torneo.",
-
+    "participaciones": 11,
+    "goleadores":[
+      {
+        "nombre":"Heung-min Son",
+        "goles": 54,
+        "partidos": 142
+      },
+      {
+        "nombre":"Dong-gook Lee",
+        "goles": 30,
+        "partidos": 80
+      },
+      {
+        "nombre":"Chu-young Park",
+        "goles": 22,
+        "partidos": 60
+      },
+      {
+        "nombre":"Ja-cheol Koo",
+        "goles": 19,
+        "partidos": 77
+      },
+      {
+        "nombre":"Ui-jo Hwang",
+        "goles": 19,
+        "partidos": 61
+      }
+    ],
     "mejoresResultados": [
       {
         "anio": 2002,
@@ -187,7 +322,34 @@
     "scale":"5.0 5.0 5.0",
     "particulas":"musica",
     "descripcion": "La Selección de fútbol de España, conocida como La Roja, es una de las selecciones más exitosas de Europa y miembro de la UEFA. Alcanzó su mayor gloria en 2010 al conquistar su primera Copa del Mundo, consolidando una era dorada del fútbol español.",
-
+    "participaciones": 16,
+    "goleadores":[
+      {
+        "nombre":"Fernando Hierro",
+        "goles": 10,
+        "partidos": 24
+      },
+      {
+        "nombre":"Julio Salinas",
+        "goles": 8,
+        "partidos": 12
+      },
+      {
+        "nombre":"Javier Hernandez",
+        "goles": 109,
+        "partidos": 52
+      },
+      {
+        "nombre":"Jared Borgetti",
+        "goles": 89,
+        "partidos": 46
+      },
+      {
+        "nombre":"Luis Hernandez",
+        "goles": 85,
+        "partidos": 35
+      }
+    ],
     "mejoresResultados": [
       {
         "anio": 2010,
@@ -223,7 +385,34 @@
     "scale":"0.8 0.8 0.8",
     "particulas":"petalos",
     "descripcion": "La Selección de fútbol de Japón, conocida como Samurai Blue, es una de las selecciones más fuertes de Asia y miembro de la AFC. Desde su primera participación en 1998, se ha convertido en un equipo constante en Copas del Mundo y ha destacado por su disciplina táctica y juego dinámico.",
-
+    "participaciones": 17,
+    "goleadores":[
+      {
+        "nombre":"Cuauhtemoc Blanco",
+        "goles": 119,
+        "partidos": 38
+      },
+      {
+        "nombre":"Raul Jimenez",
+        "goles": 113,
+        "partidos": 45
+      },
+      {
+        "nombre":"Javier Hernandez",
+        "goles": 109,
+        "partidos": 52
+      },
+      {
+        "nombre":"Jared Borgetti",
+        "goles": 89,
+        "partidos": 46
+      },
+      {
+        "nombre":"Luis Hernandez",
+        "goles": 85,
+        "partidos": 35
+      }
+    ],
     "mejoresResultados": [
       {
         "anio": 2022,
@@ -259,7 +448,34 @@
     "scale":"0.9 0.9 0.9",
     "particulas":"humo",
     "descripcion": "La Selección de fútbol de Uzbekistán representa al país en competiciones internacionales y es miembro de la AFC. Desde su independencia en 1991, se ha consolidado como una selección competitiva en Asia Central, aunque aún busca clasificar por primera vez a una Copa del Mundo.",
-
+    "participaciones": 17,
+    "goleadores":[
+      {
+        "nombre":"Cuauhtemoc Blanco",
+        "goles": 119,
+        "partidos": 38
+      },
+      {
+        "nombre":"Raul Jimenez",
+        "goles": 113,
+        "partidos": 45
+      },
+      {
+        "nombre":"Javier Hernandez",
+        "goles": 109,
+        "partidos": 52
+      },
+      {
+        "nombre":"Jared Borgetti",
+        "goles": 89,
+        "partidos": 46
+      },
+      {
+        "nombre":"Luis Hernandez",
+        "goles": 85,
+        "partidos": 35
+      }
+    ],
     "mejoresResultados": [
     ],
 
@@ -281,7 +497,34 @@
     "scale":"0.5 0.5 0.5",
     "particulas":"polvo",
     "descripcion": "La Selección de fútbol de Túnez, conocida como Las Águilas de Cartago, es una de las selecciones más constantes del norte de África y miembro de la CAF. Ha participado en varias Copas del Mundo y es reconocida por su disciplina táctica y competitividad en torneos internacionales.",
-
+    "participaciones": 17,
+    "goleadores":[
+      {
+        "nombre":"Cuauhtemoc Blanco",
+        "goles": 119,
+        "partidos": 38
+      },
+      {
+        "nombre":"Raul Jimenez",
+        "goles": 113,
+        "partidos": 45
+      },
+      {
+        "nombre":"Javier Hernandez",
+        "goles": 109,
+        "partidos": 52
+      },
+      {
+        "nombre":"Jared Borgetti",
+        "goles": 89,
+        "partidos": 46
+      },
+      {
+        "nombre":"Luis Hernandez",
+        "goles": 85,
+        "partidos": 35
+      }
+    ],
     "mejoresResultados": [
       {
         "anio": 2022,
