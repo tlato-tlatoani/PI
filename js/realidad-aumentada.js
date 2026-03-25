@@ -263,11 +263,6 @@ function mostrarInfo(clave) {
   document.getElementById("trivia-view").classList.add("hidden");
   document.getElementById("card-nombre").innerText = s.nombre;
   document.getElementById("card-descripcion").innerText = s.descripcion;
-  const tabla = document.getElementById("tabla-resultados");
-  tabla.innerHTML = "";
-  s.mejoresResultados.forEach(r => {
-    tabla.innerHTML += `<tr><td>${r.anio}</td><td>${r.mundial}</td><td>${r.instancia}</td></tr>`;
-  });
 }
 
 // ───────────────────────────────────────────────────────────────────────
