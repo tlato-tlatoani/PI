@@ -335,19 +335,19 @@
         "partidos": 12
       },
       {
-        "nombre":"Javier Hernandez",
-        "goles": 109,
-        "partidos": 52
+        "nombre":"David Villa",
+        "goles": 8,
+        "partidos": 16
       },
       {
-        "nombre":"Jared Borgetti",
-        "goles": 89,
-        "partidos": 46
+        "nombre":"David Silva",
+        "goles": 8,
+        "partidos": 19
       },
       {
-        "nombre":"Luis Hernandez",
-        "goles": 85,
-        "partidos": 35
+        "nombre":"Raul Gonzalez",
+        "goles": 8,
+        "partidos": 29
       }
     ],
     "mejoresResultados": [
@@ -385,32 +385,32 @@
     "scale":"0.8 0.8 0.8",
     "particulas":"petalos",
     "descripcion": "La Selección de fútbol de Japón, conocida como Samurai Blue, es una de las selecciones más fuertes de Asia y miembro de la AFC. Desde su primera participación en 1998, se ha convertido en un equipo constante en Copas del Mundo y ha destacado por su disciplina táctica y juego dinámico.",
-    "participaciones": 17,
+    "participaciones": 7,
     "goleadores":[
       {
-        "nombre":"Cuauhtemoc Blanco",
-        "goles": 119,
-        "partidos": 38
+        "nombre":"Kunishige Kamamoto",
+        "goles": 75,
+        "partidos": 76
       },
       {
-        "nombre":"Raul Jimenez",
-        "goles": 113,
-        "partidos": 45
+        "nombre":"Kazuyoshi Miura",
+        "goles": 55,
+        "partidos": 98
       },
       {
-        "nombre":"Javier Hernandez",
-        "goles": 109,
-        "partidos": 52
+        "nombre":"Shinji Okazaki",
+        "goles": 50,
+        "partidos": 116
       },
       {
-        "nombre":"Jared Borgetti",
-        "goles": 89,
-        "partidos": 46
+        "nombre":"Hiromi Hara",
+        "goles": 38,
+        "partidos": 76
       },
       {
-        "nombre":"Luis Hernandez",
-        "goles": 85,
-        "partidos": 35
+        "nombre":"Keisuke Honda",
+        "goles": 37,
+        "partidos": 98
       }
     ],
     "mejoresResultados": [
@@ -448,32 +448,32 @@
     "scale":"0.9 0.9 0.9",
     "particulas":"humo",
     "descripcion": "La Selección de fútbol de Uzbekistán representa al país en competiciones internacionales y es miembro de la AFC. Desde su independencia en 1991, se ha consolidado como una selección competitiva en Asia Central, aunque aún busca clasificar por primera vez a una Copa del Mundo.",
-    "participaciones": 17,
+    "participaciones": "El Mundial 2026 será su primero.",
     "goleadores":[
       {
-        "nombre":"Cuauhtemoc Blanco",
-        "goles": 119,
-        "partidos": 38
+        "nombre":"Eldor Shomurodov",
+        "goles": 43,
+        "partidos": 88
       },
       {
-        "nombre":"Raul Jimenez",
-        "goles": 113,
-        "partidos": 45
+        "nombre":"Aleksandr Geynrikh",
+        "goles": 25,
+        "partidos": 73
       },
       {
-        "nombre":"Javier Hernandez",
-        "goles": 109,
-        "partidos": 52
+        "nombre":"Igor Sergeev",
+        "goles": 25,
+        "partidos": 73
       },
       {
-        "nombre":"Jared Borgetti",
-        "goles": 89,
-        "partidos": 46
+        "nombre":"Odil Akhmedov",
+        "goles": 20,
+        "partidos": 96
       },
       {
-        "nombre":"Luis Hernandez",
-        "goles": 85,
-        "partidos": 35
+        "nombre":"Server Djeparov",
+        "goles": 19,
+        "partidos": 97
       }
     ],
     "mejoresResultados": [
@@ -497,32 +497,32 @@
     "scale":"0.5 0.5 0.5",
     "particulas":"polvo",
     "descripcion": "La Selección de fútbol de Túnez, conocida como Las Águilas de Cartago, es una de las selecciones más constantes del norte de África y miembro de la CAF. Ha participado en varias Copas del Mundo y es reconocida por su disciplina táctica y competitividad en torneos internacionales.",
-    "participaciones": 17,
+    "participaciones": 16,
     "goleadores":[
       {
-        "nombre":"Cuauhtemoc Blanco",
-        "goles": 119,
-        "partidos": 38
+        "nombre":"Wahbi Khazari",
+        "goles": 2,
+        "partidos": 3
       },
       {
-        "nombre":"Raul Jimenez",
-        "goles": 113,
-        "partidos": 45
+        "nombre":"Fakhreddine Ben Youssef",
+        "goles": 1,
+        "partidos": 3
       },
       {
-        "nombre":"Javier Hernandez",
-        "goles": 109,
-        "partidos": 52
+        "nombre":"Raouf Bouzaiene",
+        "goles": 1,
+        "partidos": 3
       },
       {
-        "nombre":"Jared Borgetti",
-        "goles": 89,
-        "partidos": 46
+        "nombre":"Dylan Bronn",
+        "goles": 1,
+        "partidos": 2
       },
       {
-        "nombre":"Luis Hernandez",
-        "goles": 85,
-        "partidos": 35
+        "nombre":"Mokhtar Douieb",
+        "goles": 1,
+        "partidos": 3
       }
     ],
     "mejoresResultados": [
