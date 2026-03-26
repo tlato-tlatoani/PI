@@ -1,7 +1,7 @@
 # ⚽ MexScan
 
 MexScan es una aplicación web interactiva que utiliza Realidad Aumentada para ofrecer una experiencia única alrededor del fútbol y el Mundial de la FIFA 2026 🌎🏆  
-[👉 Pruébalo](https://pi-green-seven.vercel.app/)
+
 ## ✨ Con MexScan puedes:
 
 ### 📷 Escanear escudos de selecciones
@@ -24,5 +24,7 @@ MexScan es una aplicación web interactiva que utiliza Realidad Aumentada para o
 - Uzbekistán
 - Colombia
 - Uruguay
-- España  
+- España
+
+[👉 Pruébalo](https://pi-green-seven.vercel.app/)
 
