@@ -14,6 +14,12 @@ const videos = [
 let currentIndex = 0;
 const videoElement = document.getElementById("mainVideo");
 
+document.addEventListener('DOMContentLoaded', (event) => {
+    videoElement.src = videos[currentIndex];
+    videoElement.load();
+    videoElement.play();
+});
+
 document.getElementById("nextVideo").addEventListener("click", () => {
   currentIndex = (currentIndex + 1) % videos.length;
   cambiarVideo();

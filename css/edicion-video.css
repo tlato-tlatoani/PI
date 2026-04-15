@@ -25,11 +25,25 @@ header {
   background-color: #000000b1;
 }
 
+.empresa{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+header img{
+  width: 50px;
+  height: 50px;
+  margin-left: 5px;
+}
+
 header h1 {
   color: #ffffff;
   font-family: Alan-Sans;
   font-size: 30px;
   margin: 20px;
+  margin-left: 5px;
 }
 
 header button{
