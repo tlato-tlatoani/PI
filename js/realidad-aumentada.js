@@ -269,16 +269,30 @@ function mostrarInfo(clave) {
 //  TRIVIA
 // ───────────────────────────────────────────────────────────────────────
 document.getElementById("trivia-btn").addEventListener("click", () => mostrarTrivia());
+let ultimaPregunta = -1;
 
 function mostrarTrivia() {
-  const trivia = datos[seleccionActual].trivia;
+  const triviaArray = datos[seleccionActual].trivia;
+  let randomIndex;
+
+  do {
+    randomIndex = Math.floor(Math.random() * triviaArray.length);
+  } while (randomIndex === ultimaPregunta);
+
+  ultimaPregunta = randomIndex;
+
+  const trivia = triviaArray[randomIndex];
+
   document.getElementById("info-view").classList.add("hidden");
   document.getElementById("trivia-view").classList.remove("hidden");
+
   document.getElementById("trivia-view").innerHTML = `
     <h2>Trivia: ${trivia.pregunta}</h2>
-    ${trivia.opciones.map((o,i) =>
+    ${trivia.opciones.map((o, i) =>
       `<button class="answer" data-index="${i}">${o}</button>`
-    ).join("")}`;
+    ).join("")}
+  `;
+
   activarEventosTrivia(trivia.correcta);
 }
 
