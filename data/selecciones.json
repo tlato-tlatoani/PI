@@ -51,15 +51,53 @@
       }
     ],
 
-    "trivia": {
-      "pregunta": "¿Cuántas veces ha sido sede México de una Copa Mundial antes del 2026?",
-      "opciones": [
-        "1",
-        "2",
-        "3"
-      ],
-      "correcta": 1
-    }
+    "trivia": [
+      {
+        "pregunta": "¿Cuántas veces ha sido sede México de una Copa Mundial antes del 2026?",
+        "opciones": [
+          "1",
+          "2",
+          "3"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es el mejor resultado histórico de México en una Copa Mundial?",
+        "opciones": [
+          "Cuartos de final",
+          "Final",
+          "Semifinal"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿En qué años México alcanzó cuartos de final como local?",
+        "opciones": [
+          "1970 y 1986",
+          "1994 y 1998",
+          "2002 y 2006"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Quién es el máxico goleador histórico de México en Copas del Mundo?",
+        "opciones": [
+          "Javier Hernández",
+          "Cuauhtémoc Blanco",
+          "Luis Hernández"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cómo se le conoce popularmente a la selección mexicana?",
+        "opciones": [
+          "La Roja",
+          "El Tri",
+          "Los Aztecas"
+        ],
+        "correcta": 1
+      }
+    ]
   },
 
   "colombia": {
@@ -114,15 +152,53 @@
       }
     ],
 
-    "trivia": {
-      "pregunta": "¿Cuál fue el mejor puesto que ha alcanzado Colombia en una Copa del Mundo?",
-      "opciones": [
-        "Campeón",
-        "Semifinal",
-        "Cuartos de final"
-      ],
-      "correcta": 2
-    }
+    "trivia": [
+      {
+        "pregunta": "¿Cuál fue el mejor puesto que ha alcanzado Colombia en una Copa del Mundo?",
+        "opciones": [
+          "Campeón",
+          "Semifinal",
+          "Cuartos de final"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿En qué Mundial Colombia logró su mejor participación histórica?",
+        "opciones": [
+          "Brasil 2014",
+          "Francia 1998",
+          "Rusia 2018"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Quién fue el máximo goleador de Colombia en el Mundial de 2014?",
+        "opciones": [
+          "Radamel Falcao",
+          "James Rodríguez",
+          "Juan Cuadrado"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es el apodo de la selección colombiana?",
+        "opciones": [
+          "Los Cafeteros",
+          "Los Albiceleste",
+          "La Roja"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Contra qué selección logró Colombia una histórica victoria 5'0 en eliminatorias rumbo al Mundial de 1994?",
+        "opciones": [
+          "Selección de fútbol de Brasil",
+          "Selección de fútbol de Argentina",
+          "Selección de fútbol de Uruguay"
+        ],
+        "correcta": 1
+      }
+    ]
   },
 
   "uruguay": {
@@ -177,7 +253,8 @@
       }
     ],
 
-    "trivia": {
+    "trivia": [
+      {
       "pregunta": "¿En qué año ganó Uruguay su primera Copa del Mundo?",
       "opciones": [
         "1930",
@@ -185,7 +262,44 @@
         "1962"
       ],
       "correcta": 0
-    }
+      },
+      {
+      "pregunta": "¿Cuántas Copas del Mundo ha ganado Uruguay?",
+      "opciones": [
+        "1",
+        "2",
+        "3"
+      ],
+      "correcta": 1
+      },
+      {
+      "pregunta": "¿Quién es el máximo goleador histórico de la selección de Uruguay?",
+      "opciones": [
+        "Luis Suárez",
+        "Edinson Cavani",
+        "Dego Forlán"
+      ],
+      "correcta": 0
+      },
+      {
+      "pregunta": "¿Cómo se le conoce popularmente a la selección de Uruguay?",
+      "opciones": [
+        "La Celeste",
+        "Los Charrúas",
+        "La Albiceleste"
+      ],
+      "correcta": 0
+      },
+      {
+      "pregunta": "¿Contra qué selección ganó Uruguay la final del Mundial de 1950 en el famoso Maracanazo?",
+      "opciones": [
+        "Selección de fútbol de Italia",
+        "Selección de fútbol de Argentina",
+        "Selección de fútbol de Brasil"
+      ],
+      "correcta": 2
+      }
+    ]
   },
 
   "sudafrica": {
@@ -241,15 +355,53 @@
       }
     ],
 
-    "trivia": {
+    "trivia": [
+      {
       "pregunta": "¿Qué hecho histórico logró Sudáfrica en la Copa del Mundo 2010?",
       "opciones": [
-        "Primero país africano en organizar un Mundial",
+        "Primer país africano en organizar un Mundial",
         "Llego a semifinales",
         "Gano su grupo"
       ],
       "correcta": 0
-    }
+      },
+      {
+      "pregunta": "¿Cómo se le conoce popularmente a la selección de Sudáfrica",
+      "opciones": [
+        "Los Leones",
+        "Bafana Bafana",
+        "Los Elefantes"
+      ],
+      "correcta": 1
+      },
+      {
+      "pregunta": "¿En qué año debutó Sudáfrica en una Copa del Mundo?",
+      "opciones": [
+        "1994",
+        "1998",
+        "2002"
+      ],
+      "correcta": 1
+      },
+      {
+        "pregunta": "¿Contra qué selección ganó Sudáfrica su primer partido en el Mundial de 2010?",
+        "opciones": [
+          "Selección de fútbol de Francia",
+          "Selección de fútbol de México",
+          "Selección de fútbol de Uruguay"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Cuál fue el resultado del partido inaugural del Mundial 2010 entre Sudáfrica y México?",
+        "opciones": [
+          "1-0",
+          "2-1",
+          "1-1"
+        ],
+        "correcta": 2
+      }
+    ]
   },
   
   "corea_del_sur": {
@@ -305,15 +457,53 @@
       }
     ],
 
-    "trivia": {
-      "pregunta": "¿Con qué país organizó Corea del Sur la Copa del Mundo 2022?",
-      "opciones": [
-        "China",
-        "Japón",
-        "Australia"
-      ],
-      "correcta": 1
-    }
+    "trivia": [
+      {
+        "pregunta": "¿Con qué país organizó Corea del Sur la Copa del Mundo 2022?",
+        "opciones": [
+          "China",
+          "Japón",
+          "Australia"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál ha sido el mejor resultado de Corea del Sur en una Copa del Mundo?",
+        "opciones": [
+          "Cuartos de final",
+          "Semifinales",
+          "Final"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿En qué Mundial logró Corea del Sur su mejor participación histórica?",
+        "opciones": [
+          "Francia 1998",
+          "Corea-Japón 2002",
+          "Brasil 2014"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Quién fue una de las principales figuras de Corea del Sur en el Mundial 2002?",
+        "opciones": [
+          "Son Heung-min",
+          "Park Ji-sung",
+          "Cha Bum-kun"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿A qué seleccion eliminó Corea del Sur en cuartos de final del Mundial 2002?",
+        "opciones": [
+          "Selección de fútbol de Italia",
+          "Selección de fútbol de Alemania",
+          "Selección de fútbol de España"
+        ],
+        "correcta": 2
+      }
+    ]
   },
   
   "espana": {
@@ -480,7 +670,7 @@
     ],
 
     "trivia": {
-      "pregunta": "¿Desde qué año compite Uzbekistán como selección independiente tran la disolución de la Unión Soviética?",
+      "pregunta": "¿Desde qué año compite Uzbekistán como selección independiente tras la disolución de la Unión Soviética?",
       "opciones": [
         "1985",
         "1991",
