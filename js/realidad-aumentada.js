@@ -271,7 +271,7 @@ function mostrarInfo(clave) {
 document.getElementById("trivia-btn").addEventListener("click", () => mostrarTrivia());
 let ultimaPregunta = -1;
 
-/*function mostrarTrivia() {
+function mostrarTrivia() {
   const triviaArray = datos[seleccionActual].trivia;
   let randomIndex;
 
@@ -282,49 +282,6 @@ let ultimaPregunta = -1;
   ultimaPregunta = randomIndex;
 
   const trivia = triviaArray[randomIndex];
-
-  document.getElementById("info-view").classList.add("hidden");
-  document.getElementById("trivia-view").classList.remove("hidden");
-
-  document.getElementById("trivia-view").innerHTML = `
-    <h2>Trivia: ${trivia.pregunta}</h2>
-    ${trivia.opciones.map((o, i) =>
-      `<button class="answer" data-index="${i}">${o}</button>`
-    ).join("")}
-  `;
-
-  activarEventosTrivia(trivia.correcta);
-}*/
-
-function mostrarTrivia() {
-  const pais = datos[seleccionActual];
-
-  if (!pais) {
-    console.error("No existe el país:", seleccionActual);
-    return;
-  }
-
-  const triviaArray = pais.trivia;
-
-  if (!Array.isArray(triviaArray) || triviaArray.length === 0) {
-    console.error("Trivia inválida:", triviaArray);
-    return;
-  }
-
-  let randomIndex;
-
-  do {
-    randomIndex = Math.floor(Math.random() * triviaArray.length);
-  } while (randomIndex === ultimaPregunta && triviaArray.length > 1);
-
-  ultimaPregunta = randomIndex;
-
-  const trivia = triviaArray[randomIndex];
-
-  if (!trivia) {
-    console.error("Pregunta undefined en índice:", randomIndex);
-    return;
-  }
 
   document.getElementById("info-view").classList.add("hidden");
   document.getElementById("trivia-view").classList.remove("hidden");
