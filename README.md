@@ -27,5 +27,5 @@ MexScan es una aplicación web interactiva que utiliza Realidad Aumentada para o
 - España
 
 [👉 Pruébalo](https://pi-green-seven.vercel.app/)
-[Turotial](https://youtu.be/Xkq3WjafGRs)
+[Tutorial](https://youtu.be/Xkq3WjafGRs)
 
